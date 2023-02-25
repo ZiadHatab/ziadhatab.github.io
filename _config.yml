@@ -38,8 +38,8 @@ twitter:
 social:
   # Change to your full name.
   # It will be displayed as the default author of the posts and the copyright owner in the Footer
-  name: your_full_name
-  email: example@domain.com             # change to your email address
+  name: Ziad Hatab
+  email: zi.hatab@gmail.com             # change to your email address
   links:
     # The first element serves as the copyright owner's link
     - https://twitter.com/ziad_hatab      # change to your twitter homepage
@@ -48,7 +48,7 @@ social:
     # - https://www.facebook.com/username
     - https://www.linkedin.com/in/ziadhatab
 
-google_site_verification:               # fill in to your verification string
+google_site_verification: JiboeacXvzJnrrVVIH8AvZJ-twz3o-SoHTaPy5bXqmc       # fill in to your verification string
 
 # ↑ --------------------------
 # The end of `jekyll-seo-tag` settings
