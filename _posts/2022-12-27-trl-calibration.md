@@ -20,7 +20,7 @@ Let's get started!
 
 When measuring a 2-port DUT with a VNA, we can describe the overall measurement model in terms of cascading the DUT with unknown network boxes. We refer to such a model as the error-box model (see Fig. 1).
 
-![Illustration of VNA 2-port error-box model](VNA_error_box_illustration.png){: .shadow }
+![Illustration of VNA 2-port error-box model](VNA_error_box_illustration.png)
 _Fig. 1. Illustration of VNA 2-port error-box model._
 
 The goal of the calibration is to estimate the error-boxes. With the obtained estimates, we can remove their effects by an inverse operation (de-cascading), therefore shifting the measurement plane to the DUT. There are, however, some caveats you need to be aware of when modeling a 2-port VNA with an error-box model:
@@ -35,7 +35,7 @@ The equations to correct the S-parameters can be found in references [2].
 
 Now that we've cleared up the caveats about the error-box model, we can delve into the math. The best way to describe the error-box model is by the T-parameters (also known as the chain parameters). The VNA is now simplified to a simple cascade of networks, as shown in Fig. 2.
 
-![Block diagram of the error-box model of a 2-port VNA](block_error_box_model.png){: .shadow }
+![Block diagram of the error-box model of a 2-port VNA](block_error_box_model.png)
 _Fig. 2. Block diagram of the error-box model of a 2-port VNA._
 
 The conversion between the S-parameters and T-parameters is give by
@@ -147,7 +147,7 @@ a_{11}b_{11} = ka_{11}b_{11}/k\label{eq:15}
 
 The next step is to measure the reflect standard. The main property of the reflect standards is that it must be symmetric, that is, both ports must see the same reflect standard. This is illustrated in Fig. 3 below.
 
-![Error-box model of a 2-port VNA when measuring a symmetric reflect standard.](block_error_box_model_symmetric_reflect.png){: .shadow }
+![Error-box model of a 2-port VNA when measuring a symmetric reflect standard.](block_error_box_model_symmetric_reflect.png)
 _Fig. 3.: Error-box model of a 2-port VNA when measuring a symmetric reflect standard._
 
 In the figure above, $\Gamma$ is the reflection coefficient of the reflect standard. We don’t know its value, but it should be the same at both ports. Generally, it is prefer to use a Short standard as it radiate less than an Open standard. But also any reflective load could also be used. The measured reflection seen at the left error-box is given by
@@ -278,7 +278,7 @@ k\_\mathrm{new} = e^{2\gamma d}k \label{eq:26}
 
 where $d$ is the offset as seen from the port. A positive offset shifts the plane away from the ports, while a negative offset shifts the plane toward the ports.
 
-![Illustration of negative plane shift of a TRL calibration done with microstrip line.](illustration_plane_shift.png){: .shadow }
+![Illustration of negative plane shift of a TRL calibration done with microstrip line.](illustration_plane_shift.png)
 _Fig. 4.: Illustration of negative plane shift of a TRL calibration done with a thru standard as microstrip line._
 
 > I will leave it to you as a homework to figure out how I derived these equations. Hint: start by placing a line of length $2d$ between the error boxes $\bs{A}$ and $\bs{B}$.
@@ -318,10 +318,74 @@ So this is the most important part of the discussion. Even if you master the mat
 
 ### Line length from frequency range and vice versa
 
-The first thing to do when designing a TRL kit is to ask the question: _What is the frequency range the kit will operate at?_. Of course there is an inverse relationship between the length of the line and the specified bandwidth of the kit... (I will update this section soon... I need to sort out some math.)
+(on going writing...)
 
-![Illustration of the rotation of the eigenvalues with frequency.](trl_eigvals_wide.gif){: .shadow }
-_Fig. 5.: Illustration of the rotation of eigenvalues with frequency._
+Before we move forward with the discussion below, the term "line length" refer to the length difference between the line and the thru standard, i.e., the length of the line relative to the thru. By definition, the thru standard has a length of zero. Please keep that in mind when ever working with a TRL calibration.
+
+Back to the topic on hand, a very important question you should be asking yourself when designing a TRL is: _What is the frequency range the kit should operate in?_. However, an even more fundamental question you should be asking is _why is there a frequency limit to begin with?_ 
+
+The answer is quite simple. Recall the eigenvalue problem in Eq. \eqref{eq:6}. The eigenvalues depend on $\gamma$, but $\gamma$ itself depend on frequency. This is generally given by the relation:
+\begin{equation}
+\gamma = \alpha + j\beta = \frac{2\pi f}{c_0}\sqrt{-\epsilon_\mathrm{r,eff}},
+\label{eq:31}
+\end{equation}
+where $\epsilon_\mathrm{r,eff}$ is the relative effective permittivity seen by the wave, which is also a complex-valued number, often written as
+\begin{equation}
+\epsilon_\mathrm{r,eff} = \epsilon_\mathrm{r,eff}^\prime - j\epsilon_\mathrm{r,eff}^{\prime\prime}
+\label{eq:32}
+\end{equation}
+
+The real-part of $\gamma$ describe the losses experience by the wave, whereas the imaginary-part describe the phase of the wave. The frequency limitation of TRL comes from the latter term. Therefore, it is easier to explain when we consider lossless case:
+\begin{equation}
+\gamma_\mathrm{lossless} = j\beta = \frac{2\pi f}{c_0}j\sqrt{\epsilon_\mathrm{r,eff}^\prime}
+\label{eq:33}
+\end{equation}
+
+Now, because $\gamma$ has a frequency dependency, the complex exponential terms, i.e., the eigenvalues, will rotate with frequency. Since the two eigenvalues have different exponent sign, their rotation will be opposite to one another. There is certain frequencies, where both eigenvalues meet and equal each other. That is when the exponent $\gamma l = \pm j\pi$. Many people call the term $\gamma l$ the electrical length of the transmission line. A visualization of the eigenvalues rotating in the complex plane with respect to frequency is shown in figure below.
+
+![Illustration of the rotation of the eigenvalues with frequency.](trl_eigvals_wide.gif)
+_Fig. 5.: Illustration of the rotation of eigenvalues in the complex plane with respect to frequency._
+
+> I created the animation of the eigenvalues with [desmos](https://www.desmos.com/calculator). What do you think will happen to the eigenvalues if we include losses? Fun fact, when you have high losses, the design criteria for the length and frequency get relaxed. Basically, lossless is the worst case scenario to have.
+{: .prompt-info }
+
+So, clearly we don't want our TRL kit operate in a frequency range, where it could cross those critical points. Because of the rotation nature of the eigenvalues, we can also visualize the multi-band nature of TRL with sketch below. Where specify a phase region, where we call phase margin. Basically, we stay out from this phase margin region, then we are OK. You can see in the sinusoidal plot who these phase margin region repeat, which also show multiple pass-bands. The choice what deems a good phase margin is up to debate, but the rule of tumbe is to not to use a TRL kit with a phase margin less than $20^{\circ}$.
+
+![Illustration of the rotation of the eigenvalues with frequency.](trl_eigvals_wide.gif)
+_Fig. 6.: Illustration of the rotation of eigenvalues in the complex plane with respect to frequency._
+
+Now, to determine the appropriate length given a frequency band, we write Eq. \eqref{eq:33} as an inequality and multiply it with the length to get the electrical length. We bound electrical length to the phase margin, and include the $\pi$ periodicity.
+
+\begin{equation}
+\pi n + \pi\frac{\phi}{180}\leq l\frac{2\pi f}{c_0}\sqrt{\epsilon_\mathrm{r,eff}^\prime} \leq \pi n + \left( 1-\frac{\phi}{180}\right)\pi, \qquad n=0,1,2,\ldots
+\label{eq:34}
+\end{equation}
+where $\phi$ is the phase margin in degrees. We can simplify above equation by canceling $\pi$ from all sides. This gives us:
+\begin{equation}
+n + \frac{\phi}{180}\leq l\frac{2f}{c_0}\sqrt{\epsilon_\mathrm{r,eff}^\prime} \leq n + 1-\frac{\phi}{180}
+\label{eq:35}
+\end{equation}
+
+Now, we can isolate the frequency term in the middle by multiplying the equation by $c_0/\left(2l\sqrt{\epsilon_\mathrm{r,eff}^\prime}\right)$.
+\begin{equation}
+\frac{n + \frac{\phi}{180}}{2l\sqrt{\epsilon_\mathrm{r,eff}^\prime}}c_0 \leq f \leq \frac{n + 1-\frac{\phi}{180}}{2l\sqrt{\epsilon_\mathrm{r,eff}^\prime}}c_0
+\label{eq:36}
+\end{equation}
+
+Therefore, we can define the lower and upper frequency limits given a length $l$, a relative effective permittivity $\epsilon_\mathrm{r,eff}^\prime$, and a phase margin $\phi$ as follows: 
+\begin{equation}
+f_\mathrm{min} = \frac{n + \frac{\phi}{180}}{2l\sqrt{\epsilon_\mathrm{r,eff}^\prime}}c_0, \qquad  f_\mathrm{max} = \frac{n + 1-\frac{\phi}{180}}{2l\sqrt{\epsilon_\mathrm{r,eff}^\prime}}c_0
+\label{eq:37}
+\end{equation}
+The value of $n$ allow you to move between bands.
+
+Of course, our goal is not only to figure out the frequency range given an already designed TRL kit, but we would also like to design the length given a frequency range specification. Now, observe from Eq. \eqref{eq:37} that the length is common for both frequency limits. Therefore, we can reformulate Eq. \eqref{eq:37} in terms of $l$ for both frequency limits:
+\begin{equation}
+l = \frac{c_0}{2f_\mathrm{min}\sqrt{\epsilon_\mathrm{r,eff}^\prime}}\left(n + \frac{\phi}{180}\right), \qquad  l = \frac{c_0}{2f_\mathrm{max}\sqrt{\epsilon_\mathrm{r,eff}^\prime}}\left(n + 1 - \frac{\phi}{180}\right)
+\label{eq:38}
+\end{equation}
+
+Now, since $l$ is the same for both cases, we can equate the equations and try to
 
 ### Determining the Physical Length of the Thru Standard
 
