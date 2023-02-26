@@ -8,11 +8,11 @@ img_path: ../../../assets/img/posts_img/
 image: TRL_waveguide_GCPW_kit.png
 ---
 
-If you're looking to get accurate measurements from your device under test (DUT) using a vector network analyzer (VNA), calibrating your VNA is a crucial step. There are many methods out there, but I believe TRL (thru-reflect-line) calibration [1] is one of the best in microwave metrology. It's quite simple to design a TRL kit, and the kit can be manufactured accurately using standard machinery process. 
+If you're using a vector network analyzer (VNA) to get accurate measurements from your device under test (DUT), calibrating your VNA is a critical step. There are many methods, but I believe that thru-reflect-line (TRL) calibration [1] is one of the best in microwave metrology. It's fairly easy to design a TRL kit, and the kit can be manufactured accurately using standard machine processes. 
 
-TRL calibration has some limitations though, such as being frequency limited and requiring the VNA to be described with the error-box model. However, the frequency limitation can be improved with multiline TRL, which I will cover in a future post. Most modern VNAs use a four-receiver architecture and can be accurately modeled by the error-box model in a straightforward manner.
+However, TRL calibration has some limitations, such as being frequency limited and requiring the VNA to be described by the error box model. However, the frequency limitation can be improved with multiline TRL, which I will discuss in a future post. Most modern VNAs use a four-receiver architecture and can be accurately modeled in a straightforward manner using the error-box model.
 
-In this post, I'll walk you through the mathematical development of TRL calibration. I also included a section to guide you on how to design your TRL kit yourself. By the end of this post, you'll be able to implement the calibration yourself and design your own TRL kit with confidence. If you're interested, my [github repository](https://github.com/ZiadHatab/trl-calibration) has a python implementation that follows the same notation used here.
+In this post, I'll walk you through the mathematical development of TRL calibration. I have also included a section that will guide you through the design of your own TRL kit. By the end of this post, you'll be able to implement the calibration yourself and design your own TRL kit with confidence. If you're interested, my [github repository](https://github.com/ZiadHatab/trl-calibration) has a Python implementation that follows the same notation used here.
 
 Let's get started!
 
@@ -318,74 +318,117 @@ So this is the most important part of the discussion. Even if you master the mat
 
 ### Line length from frequency range and vice versa
 
-(on going writing...)
+Before proceeding with the discussion below, the term "line length" refers to the difference in length between the line and the thru standard, i.e., the length of the line relative to the thru. By definition, the thru standard has a length of zero. Please keep this in mind when working with a TRL calibration.
 
-Before we move forward with the discussion below, the term "line length" refer to the length difference between the line and the thru standard, i.e., the length of the line relative to the thru. By definition, the thru standard has a length of zero. Please keep that in mind when ever working with a TRL calibration.
+Back to the topic at hand. A very important question to ask when designing a TRL kit is: _What is the frequency range in which you want the kit to operate?_. But an even more fundamental question you should be asking is, _Why is there a frequency limit in the first place?_
 
-Back to the topic on hand, a very important question you should be asking yourself when designing a TRL is: _What is the frequency range the kit should operate in?_. However, an even more fundamental question you should be asking is _why is there a frequency limit to begin with?_ 
-
-The answer is quite simple. Recall the eigenvalue problem in Eq. \eqref{eq:6}. The eigenvalues depend on $\gamma$, but $\gamma$ itself depend on frequency. This is generally given by the relation:
+The answer is quite simple. Recall the eigenvalue problem in Eq. \eqref{eq:6}. The eigenvalues depend on $\gamma$, but $\gamma$ itself depends on frequency. This is generally given by the following relation:
 \begin{equation}
 \gamma = \alpha + j\beta = \frac{2\pi f}{c_0}\sqrt{-\epsilon_\mathrm{r,eff}},
 \label{eq:31}
 \end{equation}
-where $\epsilon_\mathrm{r,eff}$ is the relative effective permittivity seen by the wave, which is also a complex-valued number, often written as
+where $\epsilon_\mathrm{r,eff}$ is the relative effective permittivity seen by the wave, which is also a complex-valued number, often written as below (some people use the positive sign convention).
 \begin{equation}
-\epsilon_\mathrm{r,eff} = \epsilon_\mathrm{r,eff}^\prime - j\epsilon_\mathrm{r,eff}^{\prime\prime}
+\epsilon_\mathrm{r,eff} = \epsilon_\mathrm{r,eff}^\prime - j\epsilon_\mathrm{r,eff}^{\prime\prime}.
 \label{eq:32}
 \end{equation}
 
-The real-part of $\gamma$ describe the losses experience by the wave, whereas the imaginary-part describe the phase of the wave. The frequency limitation of TRL comes from the latter term. Therefore, it is easier to explain when we consider lossless case:
+The real part of $\gamma$ describes the losses experienced by the wave, while the imaginary part describes the phase of the wave. The frequency limit of TRL comes from the latter term. Therefore, it is easier to explain if we consider the lossless case:
 \begin{equation}
-\gamma_\mathrm{lossless} = j\beta = \frac{2\pi f}{c_0}j\sqrt{\epsilon_\mathrm{r,eff}^\prime}
+\gamma_\mathrm{lossless} = j\beta = \frac{2\pi f}{c_0}j\sqrt{\epsilon_\mathrm{r,eff}^\prime}.
 \label{eq:33}
 \end{equation}
 
-Now, because $\gamma$ has a frequency dependency, the complex exponential terms, i.e., the eigenvalues, will rotate with frequency. Since the two eigenvalues have different exponent sign, their rotation will be opposite to one another. There is certain frequencies, where both eigenvalues meet and equal each other. That is when the exponent $\gamma l = \pm j\pi$. Many people call the term $\gamma l$ the electrical length of the transmission line. A visualization of the eigenvalues rotating in the complex plane with respect to frequency is shown in figure below.
+Since $\gamma$ is frequency dependent, the complex exponential terms, i.e., the eigenvalues, will rotate with the frequency in the complex plane. Since the two eigenvalues have different exponent signs, their rotation will be opposite to each other. There will be certain frequencies where the two eigenvalues meet and are equal. This is when the exponent $\gamma l =  0$ or $\gamma l = \pi$. Many people refer to the term $\gamma l$ as the electrical length of the transmission line. A visualization of the eigenvalues rotating in the complex plane with respect to frequency is shown in the figure below.
 
 ![Illustration of the rotation of the eigenvalues with frequency.](trl_eigvals_wide.gif)
 _Fig. 5.: Illustration of the rotation of eigenvalues in the complex plane with respect to frequency._
 
-> I created the animation of the eigenvalues with [desmos](https://www.desmos.com/calculator). What do you think will happen to the eigenvalues if we include losses? Fun fact, when you have high losses, the design criteria for the length and frequency get relaxed. Basically, lossless is the worst case scenario to have.
+> I made the animation of the eigenvalues with [desmos](https://www.desmos.com/calculator). What do you think happens to the eigenvalues when we include losses? Funnily enough, when you have high losses, the design criteria for length and frequency get relaxed. Basically, the lossless case is the worst case you can have.
 {: .prompt-info }
 
-So, clearly we don't want our TRL kit operate in a frequency range, where it could cross those critical points. Because of the rotation nature of the eigenvalues, we can also visualize the multi-band nature of TRL with sketch below. Where specify a phase region, where we call phase margin. Basically, we stay out from this phase margin region, then we are OK. You can see in the sinusoidal plot who these phase margin region repeat, which also show multiple pass-bands. The choice what deems a good phase margin is up to debate, but the rule of tumbe is to not to use a TRL kit with a phase margin less than $20^{\circ}$.
+When the eigenvalues are equal, the eigendecomposition collapses and the error boxes vanish into the identity matrix. Consider Eq. \eqref{eq:6}. If we set $e^{-\gamma l} = e^{\gamma l} = \pm 1$, then we get the following equation:
+\begin{equation}
+\bs{A}\begin{bmatrix}e^{-l\gamma} & 0 \\\ 0 & e^{l\gamma}\end{bmatrix}\bs{A}^{-1} = \bs{A}\begin{bmatrix}\pm 1 & 0 \\\ 0 & \pm 1\end{bmatrix}\bs{A}^{-1} = \pm 1\bs{I}_{2\times 2}
+\label{eq:6mod}
+\end{equation}
+Hence, we lose the information on the error box and we cannot recover it. So, clearly, we don't want our TRL kit to operate in a frequency range where it might cross these critical points. Given the rotational nature of the eigenvalues, we can also visualize the multiband nature of TRL with the sketch below, where we plot the difference between the eigenvalues (hence the sinusoidal function).
 
-![Illustration of the rotation of the eigenvalues with frequency.](trl_eigvals_wide.gif)
-_Fig. 6.: Illustration of the rotation of eigenvalues in the complex plane with respect to frequency._
+We specify a critical phase region, which we call the phase margin. Basically, we want to stay out of this phase margin region. You can see in the sinusoidal plot that the location of the phase margin region is repeated, which also results in multiple passband regions. The choice of what constitutes a good phase margin is up for debate, but the rule of thumb is to use a TRL kit with a phase margin greater than $20^{\circ}$ (the same for both positive and negative sides).
 
-Now, to determine the appropriate length given a frequency band, we write Eq. \eqref{eq:33} as an inequality and multiply it with the length to get the electrical length. We bound electrical length to the phase margin, and include the $\pi$ periodicity.
+![Illustration of phase margin and multi-band nature of TRL calibration.](trl_eigenvalues.png)
+_Fig. 6.: Illustration of phase margin and multi-band nature of TRL calibration._
+
+Now, to determine the appropriate length given a frequency band, we write Eq. \eqref{eq:33} as an inequality and multiply it with the length to get the electrical length. We bound the electrical length to the phase margin, and include $\pi$ periodicity to include all bands.
 
 \begin{equation}
-\pi n + \pi\frac{\phi}{180}\leq l\frac{2\pi f}{c_0}\sqrt{\epsilon_\mathrm{r,eff}^\prime} \leq \pi n + \left( 1-\frac{\phi}{180}\right)\pi, \qquad n=0,1,2,\ldots
+\pi n + \pi\frac{\varphi}{180}\leq l\frac{2\pi f}{c_0}\sqrt{\epsilon_\mathrm{r,eff}^\prime} \leq \pi n + \left( 1-\frac{\varphi}{180}\right)\pi, \qquad n=0,1,2,\ldots
 \label{eq:34}
 \end{equation}
-where $\phi$ is the phase margin in degrees. We can simplify above equation by canceling $\pi$ from all sides. This gives us:
+where $\varphi$ is the phase margin in degrees. Note that we didn't define $n$ to be negative because we are limited to positive frequencies.
+
+We can simplify the above equation by canceling $\pi$ on all sides, which gives us
 \begin{equation}
-n + \frac{\phi}{180}\leq l\frac{2f}{c_0}\sqrt{\epsilon_\mathrm{r,eff}^\prime} \leq n + 1-\frac{\phi}{180}
+n + \frac{\varphi}{180}\leq l\frac{2f}{c_0}\sqrt{\epsilon_\mathrm{r,eff}^\prime} \leq n + 1-\frac{\varphi}{180}
 \label{eq:35}
 \end{equation}
 
-Now, we can isolate the frequency term in the middle by multiplying the equation by $c_0/\left(2l\sqrt{\epsilon_\mathrm{r,eff}^\prime}\right)$.
+Now we can isolate the frequency term in the middle by multiplying the equation by $c_0/\left(2l\sqrt{\epsilon_\mathrm{r,eff}^\prime}\right)$.
 \begin{equation}
-\frac{n + \frac{\phi}{180}}{2l\sqrt{\epsilon_\mathrm{r,eff}^\prime}}c_0 \leq f \leq \frac{n + 1-\frac{\phi}{180}}{2l\sqrt{\epsilon_\mathrm{r,eff}^\prime}}c_0
+\frac{n + \frac{\varphi}{180}}{2l\sqrt{\epsilon_\mathrm{r,eff}^\prime}}c_0 \leq f \leq \frac{n + 1-\frac{\varphi}{180}}{2l\sqrt{\epsilon_\mathrm{r,eff}^\prime}}c_0
 \label{eq:36}
 \end{equation}
 
-Therefore, we can define the lower and upper frequency limits given a length $l$, a relative effective permittivity $\epsilon_\mathrm{r,eff}^\prime$, and a phase margin $\phi$ as follows: 
+Therefore, given a length $l$, a relative effective permittivity $\epsilon_\mathrm{r,eff}^\prime$, and a phase margin $\varphi$, we can define the lower and upper frequency bounds as follows:
 \begin{equation}
-f_\mathrm{min} = \frac{n + \frac{\phi}{180}}{2l\sqrt{\epsilon_\mathrm{r,eff}^\prime}}c_0, \qquad  f_\mathrm{max} = \frac{n + 1-\frac{\phi}{180}}{2l\sqrt{\epsilon_\mathrm{r,eff}^\prime}}c_0
+f_\mathrm{min} = \frac{n + \frac{\varphi}{180}}{2l\sqrt{\epsilon_\mathrm{r,eff}^\prime}}c_0, \qquad f_\mathrm{max} = \frac{n + 1-\frac{\varphi}{180}}{2l\sqrt{\epsilon_\mathrm{r,eff}^\prime}}c_0
 \label{eq:37}
 \end{equation}
-The value of $n$ allow you to move between bands.
+The value of $n$ allows you to move between bands.
 
-Of course, our goal is not only to figure out the frequency range given an already designed TRL kit, but we would also like to design the length given a frequency range specification. Now, observe from Eq. \eqref{eq:37} that the length is common for both frequency limits. Therefore, we can reformulate Eq. \eqref{eq:37} in terms of $l$ for both frequency limits:
+Of course, our goal is not only to find the frequency range given an already designed TRL kit, but we also want to design the length given a frequency range specification. We can reformulate Eq. \eqref{eq:37} in terms of $l$ for both frequency bounds:
 \begin{equation}
-l = \frac{c_0}{2f_\mathrm{min}\sqrt{\epsilon_\mathrm{r,eff}^\prime}}\left(n + \frac{\phi}{180}\right), \qquad  l = \frac{c_0}{2f_\mathrm{max}\sqrt{\epsilon_\mathrm{r,eff}^\prime}}\left(n + 1 - \frac{\phi}{180}\right)
+l = \frac{c_0}{2f_\mathrm{min}\sqrt{\epsilon_\mathrm{r,eff}^\prime}}\left(n + \frac{\varphi}{180}\right), \qquad l = \frac{c_0}{2f_\mathrm{max}\sqrt{\epsilon_\mathrm{r,eff}^\prime}}\left(n + 1 - \frac{\varphi}{180}\right)
 \label{eq:38}
 \end{equation}
 
-Now, since $l$ is the same for both cases, we can equate the equations and try to
+So, clearly, if you specify any arbitrary $f_\mathrm{min}$ and $f_\mathrm{max}$, you are sure to get different length values. But we all know that length is a constant, so how can we fix this? Since $l$ must be the same for both frequency bounds, we can equate the equations and drop the common terms:
+\begin{equation}
+\frac{1}{f_\mathrm{min}}\left(n + \frac{\varphi}{180}\right) = \frac{1}{f_\mathrm{max}}\left(n + 1 - \frac{\varphi}{180}\right)
+\label{eq:39}
+\end{equation}
+
+Now we solve for the phase wrapping constant $n$ by rewriting Eq. \eqref{eq:39},
+\begin{equation}
+n = \frac{q - (q+1)\varphi/180}{1-q},
+\label{eq:40}
+\end{equation}
+where $q = f_\mathrm{min}/f_\mathrm{max}$.
+
+At this point we know that $n$ must be an integer, regardless of the frequency limits and phase margin. Basically, what $n$ tells us is the number of bands that support the specified frequency range and phase margin. Therefore, we need to floor $n$ to the nearest integer. After that, we can calculate the actual phase margin achieved.
+\begin{equation}
+n = \left\lfloor \frac{q - (q+1)\varphi/180}{1-q} \right\rfloor \quad\Longrightarrow\quad \varphi = 180 \frac{nq-n+q}{q+1}
+\label{eq:41}
+\end{equation}
+
+I should note here that there will be cases where you specify a very wide bandwidth, you will get $n=0$, but you will also get a phase margin smaller than the one you specified. In general, for a desired phase margin of $20^{\circ}$ or higher, you would want $f_\mathrm{max} \leq 8f_\mathrm{min}$. In fact, a more general equation for any phase margin between $0^\circ$ and $90^\circ$ is given by
+\begin{equation}
+f_\mathrm{max} \leq \frac{\varphi}{180-\varphi}f_\mathrm{min}
+\label{eq:42}
+\end{equation}
+
+> In case you are wondering how I derived Eq. \eqref{eq:42}. This is straightforward from Eq. \eqref{eq:41}. Just replace the equality of the phase margin with the $\geq$ relation (we want $\varphi$ to be greater than or equal). Then replace $n=0$ and solve for $q$.
+{: .prompt-info }
+
+Finally, after you have found $n$ for a given phase margin and frequency limit, and computed back the actual phase margin after flooring $n$. Then you can solve for $l$ using any of the equations in \eqref{eq:38}.
+
+I know this has been too long of a discussion to just calculate $l$. So here is a summary of the steps you should follow when designing the length.
+
+* Specify a desired phase margin. This ranges from $0^\circ$ to $90^{\circ}$. Typically we choose $\varphi=20^{\circ}$.
+* Specify your target frequency range. Test your frequency limits with the inequality in Eq. \eqref{eq:42}.
+* Use Eq. \eqref{eq:41} to calculate $n$ and the actual phase margin $\varphi$. If you get $n>0$, this means that any value of $n$ that is smaller (down to zero) will give you a higher phase margin (which is better than your specification). In most cases you would use $n=0$.
+* Use any of the equations in \eqref{eq:38} to compute the length.
+* Or just ignore the whole discussion here and use my Python script on [GitHub](https://github.com/ZiadHatab/trl-calibration).
 
 ### Determining the Physical Length of the Thru Standard
 
@@ -398,22 +441,26 @@ The answer is not straightforward, but here are some things to consider that wil
 2. Maximum length: This depends on the losses associated with your medium. If you are dealing with a highly lossy material, keep the thru as short as possible without any coupling problems. If you are dealing with a low-loss material, you can make it longer. As a general rule, make it a little longer than the minimum length that causes no problems. If you cannot simulate your structure, you can use an analytical model of transmission (e.g. from [scikit-rf](https://scikit-rf.readthedocs.io/en/latest/api/media/index.html)) and look for the length that will result in 3 dB attenuation. Set the length below this 3 dB length. The exact number depends on manufacturing capabilities and cost.
 
 3. Tips for specific types of transmission lines:
-   * Waveguides: Rather than connecting the flanges together, it is recommended that you implement the thru as a line, and move the plane back with the propagation constant obtained from calibration. This helps minimize the effects of imperfections at the connection interface.
-   * PCB: The connectors, particularly the transition from the connector to the PCB, can cause problems. If you design your transition without consideration, you are prone to generating surface waves and radiation at the connector interface. One simple thing you can do to reduce these effects is to introduce a taper between your connector and the final transmission line type and smooth out the traces. Avoid sharp corners if possible. While corners may be acceptable at lower frequencies (below 18 GHz), it becomes problematic at higher frequencies.
+
+  * Waveguides: Rather than connecting the flanges together, it is recommended that you implement the thru as a line, and shift the plane back with the propagation constant obtained from calibration. This helps minimize the effects of imperfections at the connection interface.
+
+  * PCB: The connectors, particularly the transition from the connector to the PCB, can cause problems. If you design your transition without consideration, you are prone to generating surface waves and radiation at the connector interface. One simple thing you can do to reduce these effects is to introduce a taper between your connector and the final transmission line type and smooth out the traces. Avoid sharp corners if possible.
 
 ### What should the reflect standard be?
 
 There are several misconceptions surrounding the implementation of the reflect standard. Some people claim that it must be implemented in the same media as the line and thru standards, while others suggest adding an offset to the reflect or using a single-mode propagation. While these statements are based on some truth, they are often overgeneralized and can create confusion.
 
-The three strict properties that your reflect standard should possess are:
+The three strict properties that your reflect standard should possess, which are:
 
 1. It must be reflective (duhhh~).
+
 2. It must be symmetrical from both ports.
+
 3. You must know an estimate of the reflection to resolve sign ambiguity during calibration.
 
 The above conditions are easier said than done, and there are possible problems you may encounter during implementation:
 
-* Replicating the reflect on both ports is not that difficult, but you can make things difficult if you're not careful. For example, an open standard of a poorly designed connector or interface can resonate in the frequency band you are working with. You can still design stable open standards, but if you are unsure, it is better to implement your reflect as a short standard, since shorts tend to radiate and resonate less. If you are still unsure of your design, an EM simulation can help. However, a typical short standard should suffice for most interfaces.
+* Replicating the reflect on both ports is not that difficult, but you can make things difficult if you're not careful. For example, an open standard of a poorly designed connector or interface can resonate in the frequency band you are working with. You can still design stable open standards, but if you are unsure, it is better to implement your reflect as a short standard, since shorts tend to radiate and resonate less. If you are still unsure of your design, an EM simulation can help.
 
 * Adding an offset is common practice. For example, a short standard on a PCB is typically offsetted by some distance from the reference plane to avoid coupling the reflect standard to the probes/connectors, which can cause resonance and make it difficult to replicate the standard on both ports. For most interface types, you probably won't need an offset. If you are doing on-wafer probing, you may want to add the offset to be on the safe side, but even there, it depends on the coupling strength between your probe and the substrate on which the standard is implemented. If you are unsure, adding the offset won't hurt, but it is unnecessary to do so for every TRL kit.
 
