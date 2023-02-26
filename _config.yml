@@ -24,7 +24,7 @@ title: Ziad                          # the main title
 tagline: Just a nerd who loves tinkering with everything radio frequency   # it will display as the sub-title
 
 description: >-                        # used by seo meta and the atom feed
-  Everything about measurements, calibrations and signal processing at radio frequency.
+  Everything about measurements, calibrations and signal processing at radio frequencies.
 
 # fill in the protocol & hostname for your site, e.g., 'https://username.github.io'
 url: 'https://ziadhatab.github.io'
@@ -48,7 +48,7 @@ social:
     # - https://www.facebook.com/username
     - https://www.linkedin.com/in/ziadhatab
 
-google_site_verification: googlea2340bf29fbf8c3e       # fill in to your verification string
+google_site_verification: 21M-FP9LbQKhq21CU-bUwYjK5pVNA_fLanXLx1goctM       # fill in to your verification string
 
 # ↑ --------------------------
 # The end of `jekyll-seo-tag` settings
