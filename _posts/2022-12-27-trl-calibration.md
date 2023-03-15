@@ -114,7 +114,7 @@ Before we continue discussing about how to de-normalize the coefficient $a_{21}/
 The transpose $(\cdot)^T$ is used here to push the inverse matrix to the right, otherwise, we would have it on the left side. Now, similar to Eq. \eqref{eq:8}, we can write the eigenvalue problem as:
 
 \begin{equation}
-(\bs{M}^{-1}\_\mathrm{thru}\bs{M}\_\mathrm{line})^T\begin{bmatrix} 1 \\\ b_{12}/b_{11}\end{bmatrix} = e^{-l\gamma}\begin{bmatrix} 1 \\\ b_{12}/b_{11}\end{bmatrix};\qquad (\bs{M}^{-1}\_\mathrm{thru}\bs{M}\_\mathrm{line})^T\begin{bmatrix} a_{21} \\\ 1\end{bmatrix} = e^{l\gamma}\begin{bmatrix} a_{21} \\\ 1\end{bmatrix}\label{eq:11}
+(\bs{M}^{-1}\_\mathrm{thru}\bs{M}\_\mathrm{line})^T\begin{bmatrix} 1 \\\ b_{12}/b_{11}\end{bmatrix} = e^{-l\gamma}\begin{bmatrix} 1 \\\ b_{12}/b_{11}\end{bmatrix};\qquad (\bs{M}^{-1}\_\mathrm{thru}\bs{M}\_\mathrm{line})^T\begin{bmatrix} b_{21} \\\ 1\end{bmatrix} = e^{l\gamma}\begin{bmatrix} b_{21} \\\ 1\end{bmatrix}\label{eq:11}
 \end{equation}
 
 where $$\bs{B}^T = \begin{bmatrix}b_{11}&b_{21}\\b_{12}&1\end{bmatrix}$$. 
