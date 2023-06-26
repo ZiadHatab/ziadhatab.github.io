@@ -8,7 +8,7 @@ img_path: ../../../assets/img/posts_img/
 image: TRL_waveguide_GCPW_kit.png
 ---
 
-If you're using a vector network analyzer (VNA) to get accurate measurements from your device under test (DUT), calibrating your VNA is a critical step. There are many methods, but I believe that thru-reflect-line (TRL) calibration [1] is one of the best in microwave metrology. It's fairly easy to design a TRL kit, and the kit can be manufactured accurately using standard machine processes. 
+When using a vector network analyzer (VNA) to measure a device under test (DUT), calibration is a critical step. While there are many calibration methods available, I believe that the thru-reflect-line (TRL) method [1] is one of the best in microwave metrology. Designing a TRL kit is fairly easy, and the kit can be manufactured accurately using standard machine processes.
 
 However, TRL calibration has some limitations, such as being frequency limited and requiring the VNA to be described by the error box model. However, the frequency limitation can be improved with multiline TRL, which I will discuss in a future post. Most modern VNAs use a four-receiver architecture and can be accurately modeled in a straightforward manner using the error-box model.
 
