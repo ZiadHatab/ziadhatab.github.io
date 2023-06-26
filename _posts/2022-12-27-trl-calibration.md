@@ -27,11 +27,12 @@ The goal of the calibration is to estimate the error-boxes. With the obtained es
 
 1. We assume that the ports of the VNA are isolated from each other, i.e., leakage between the ports is negligible. This is generally true in most VNAs.
 
-2. Most VNAs measure S-parameters under the assumption that the source termination at the receiving port is reflectionless. However, source termination is not ideal and we refer to the reflection it cause as _switch terms_. The term _switch_ is quite misleading, as we are dealing with reflection due to termination and from the switches themselves. To know the historical reason behind it, see [2]. In short, if you are dealing with a four receiver architecture, you can measure the forward and reverse switch-terms by connecting a line standard between the ports (e.g., straight connection) and measuring the wave ratios:
+2. Most Vector Network Analyzers (VNAs) measure S-parameters under the assumption that the termination at the non-driving port is reflectionless. However, this is not possible, and we refer to this reflection as "switch terms". The word "switch term" is quite misleading, as we are actually dealing with reflection due to termination. For the historical reasons behind this terminology, see [2]. You can also check my [post on this topic](https://ziadhatab.github.io/posts/vna-switch-terms/).
+In short, if you are working with a four-sampler VNA, which is nowadays most VNAs, you can measure the forward and reverse switch terms by connecting any transmissive device between the ports and measuring the following wave ratios:
 \begin{equation}
-\Gamma_\mathrm{f} = \left.\frac{a_2}{b_2}\right|\_\text{sourced by port 1}, \quad \Gamma_\mathrm{r} = \left.\frac{a_1}{b_1}\right|_\text{sourced by port 2}\label{eq:1}
+\Gamma_\mathrm{f} = \left.\frac{a_2}{b_2}\right|\_\text{sourced by port 1}, \qquad \Gamma_\mathrm{r} = \left.\frac{a_1}{b_1}\right|_\text{sourced by port 2}\label{eq:1}
 \end{equation}
-The equations to correct the S-parameters can be found in references [2].
+The equations to correct the S-parameters can be found in references [2] or on [my post](https://ziadhatab.github.io/posts/vna-switch-terms/).
 
 Now that we've cleared up the caveats about the error-box model, we can delve into the math. The best way to describe the error-box model is by the T-parameters (also known as the chain parameters). The VNA is now simplified to a simple cascade of networks, as shown in Fig. 2.
 

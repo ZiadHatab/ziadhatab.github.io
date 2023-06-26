@@ -71,7 +71,7 @@
         ['$$', '$$'],
         ['\\[', '\\]']
       ],
-      tags: 'ams',             /* 'none' or 'ams' or 'all' */
+      tags: 'all',             /* 'none' or 'ams' or 'all' */
       macros: {                /* maros that I usually use in texstudio */
         Re:  ['\\operatorname{Re}\\left({#1}\\right)', 1], /* real part with expandable parentheses */
         Im:  ['\\operatorname{Im}\\left({#1}\\right)', 1], /* imag part with expandable parentheses */
@@ -81,6 +81,7 @@
         cov: ['\\mathrm{cov}\\left({#1}\\right)', 1],      /* covariance operator */
         var: ['\\mathrm{var}\\left({#1}\\right)', 1],      /* variance operator */
         std: ['\\mathrm{std}\\left({#1}\\right)', 1],      /* standard deviation operator */
+        overbar: ['\\mkern 1.5mu\\overline{\\mkern-1.5mu#1\\mkern-1.5mu}\\mkern 1.5mu', 1],      /* nice wide overbar */
       }
     }
   };
