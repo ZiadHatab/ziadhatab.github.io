@@ -7,4 +7,4 @@ order: 4
 <!-- > Add Markdown syntax content to file `_tabs/about.md`{: .filepath } and it will show up on this page.
 {: .prompt-tip } -->
 
-Hi there! My name is Ziad and I'm passionate about RF electronics and signal processing. I do research on millimeter-wave measurements (mm-wave metrology) and I'm excited to share my knowledge with you. Through this website, I hope to make the often complex world of RF technology more approachable and understandable. My goal is simply to spread knowledge and help others grow in their understanding of this field. So, have fun reading!
+Hi there! I'm Ziad, and I have a great passion for RF electronics and signal processing. My current research is focused on millimeter-wave measurements (mm-wave metrology), and I'm eager to share my knowledge with you. The goal of this website is to make the complex world of RF technology more accessible and understandable. My goal is simply to spread knowledge and help others gain a better understanding of this field, so enjoy reading!
