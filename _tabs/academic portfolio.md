@@ -32,7 +32,7 @@ order: 4
 
 - **Z. Hatab**, A. Abdi, G. Steinbauer, M. E. Gadringer, and W. Bösch, "Propagation Constant Measurement Based on a Single Transmission Line Standard Using a Two-Port VNA," _Sensors_, vol. 23, no. 9, p. 4548, May 2023, doi: [10.3390/s23094548](https://doi.org/10.3390/s23094548), e-print doi: [10.48550/arXiv.2302.13859](https://doi.org/10.48550/arXiv.2302.13859).
 
-- **Z. Hatab**, M. E. Gadringer and W. Bösch, "Propagation of Linear Uncertainties through Multiline Thru-Reflect-Line Calibration," accepted for publication in _IEEE Transactions on Instrumentation and Measurement_, 2023, doi: N/A, e-print doi: [10.48550/arXiv.2301.09126](https://doi.org/10.48550/arXiv.2301.09126).
+- **Z. Hatab**, M. E. Gadringer and W. Bösch, "Propagation of Linear Uncertainties through Multiline Thru-Reflect-Line Calibration," in _IEEE Transactions on Instrumentation and Measurement_, 2023, doi: [10.1109/TIM.2023.3296123](https://doi.org/10.1109/TIM.2023.3296123), e-print doi: [10.48550/arXiv.2301.09126](https://doi.org/10.48550/arXiv.2301.09126).
 
 ## E-prints
 

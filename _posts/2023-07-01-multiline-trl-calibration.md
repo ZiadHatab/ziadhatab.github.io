@@ -8,7 +8,7 @@ img_path: ../../../assets/img/posts_img/
 image: # TRL_waveguide_GCPW_kit.png
 ---
 
-I believe there is a defining moment for those of us who perform RF measurements: the time before mastering TRL calibration and the time after. TRL calibration is a powerful tool for VNA calibration. More importantly for planar circuit measurements where in-situ probing is often not possible. However, as I discussed in my [previous post on TRL](https://github.com/ZiadHatab/trl-calibration), TRL calibration is bandwidth-limited. This is where the multiline version comes in, which enables broader frequency coverage.
+I believe there is a defining moment for those of us who perform RF measurements: the time before mastering TRL calibration and the time after. TRL calibration is a powerful tool for VNA calibration. More importantly for planar circuit measurements where in-situ probing is often not possible. However, as I discussed in my [previous post on TRL](https://ziadhatab.github.io/posts/trl-calibration/), TRL calibration is bandwidth-limited. This is where the multiline version comes in, which enables broader frequency coverage.
 
 The purpose of this post is to provide the mathematical background for implementing multiline TRL calibration. I will not be discussing how to implement the NIST version [1,2]; instead, I will show you my own version [3], which is based on a different formulation and makes fewer assumptions. You can check out my GitHub repository for Python scripts and measurements, where I also provide an example analyzing the statistical difference between my method and NIST's method: <https://github.com/ZiadHatab/multiline-trl-calibration>
 
@@ -188,7 +188,7 @@ $$
 In [3], I simplified the equations for $\overline{\bs{M}}$ and $\overline{\bs{L}}$ by rewriting them in terms of the non-inverse version. This was done based on the relationship of a $2 \times 2$ matrix inverse when applied to it the vectorization operator.
 
 $$
-\vc{\bs{M}_i^{-1}} = \bs{Q}\vc{\bs{M}_i}\frac{1}{\det\left( \bs{M}_i \right)}; \qquad \vc{\bs{L}_i^{-1}} = \bs{Q}\vc{\bs{L}_i}\underbrace{\frac{1}{\det\left( \bs{L}i \right)}}_{=1}
+\vc{\bs{M}_i^{-1}} = \bs{Q}\vc{\bs{M}_i}\frac{1}{\det\left( \bs{M}_i \right)}; \qquad \vc{\bs{L}_i^{-1}} = \bs{Q}\vc{\bs{L}_i}\underbrace{\frac{1}{\det\left( \bs{L}_i \right)}}_{=1}
 \label{eq:19}
 $$
 
@@ -473,7 +473,7 @@ $$
 where $s_i$, $\bs{u}_i$, and $\bs{v}_i$ are the singular values and associated left and right singular vectors of the measurements in \eqref{eq:43}. Additionally, since \eqref{eq:44} has a symmetric structure, we can use the Takagi decomposition to split the matrix into a symmetric product, as given below:
 
 $$
-s_1\bs{u}_1\bs{v}_1^H + s_2\bs{u}_2\bs{v}2^H = \bs{U}{t}\bs{S}_t\bs{U}t^T = \underbrace{\bs{G}}_{N\times 2}\bs{G}^T,
+s_1\bs{u}_1\bs{v}_1^H + s_2\bs{u}_2\bs{v}2^H = \bs{U}_t\bs{S}_t\bs{U}_t^T = \underbrace{\bs{G}}_{N\times 2}\bs{G}^T,
 \label{eq:47}
 $$
 
