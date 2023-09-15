@@ -643,7 +643,7 @@ Conference Digest_, Fall 2002., pp. 131–155, doi: [10.1109/ARFTGF.2002.1218696
 trl calibration algorithm,” in _2022 98th ARFTG Microwave Measurement
 Conference (ARFTG)_, 2022, pp. 1–5, doi: [10.1109/ARFTG52954.2022.9844064](https://doi.org/10.1109/ARFTG52954.2022.9844064)
 
-[4] Z. Hatab, M. Gadringer, and W. Bösch, "Propagation of Linear Uncertainties through Multiline Thru-Reflect-Line Calibration," e-print: <https://arxiv.org/abs/2301.09126>
+[4] Z. Hatab, M. E. Gadringer and W. Bösch, "Propagation of Linear Uncertainties through Multiline Thru-Reflect-Line Calibration," in _IEEE Transactions on Instrumentation and Measurement_, vol. 72, pp. 1-9, 2023, doi: [10.1109/TIM.2023.3296123](https://doi.org/10.1109/TIM.2023.3296123), e-print doi: [10.48550/arXiv.2301.09126](https://doi.org/10.48550/arXiv.2301.09126).
 
 [5] J. Brewer, “Kronecker products and matrix calculus in system theory,” _IEEE
 Transactions on Circuits and Systems_, vol. 25, no. 9, pp. 772–781, sep 1978, doi: [10.1109/TCS.1978.1084534](https://doi.org/10.1109/TCS.1978.1084534)

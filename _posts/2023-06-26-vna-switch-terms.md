@@ -356,7 +356,7 @@ You can check my GitHub repository for measurements and comparisons between the 
 
 ## References
 
-[1] Z. Hatab, M. E. Gadringer, and W. Bösch, "Indirect Measurement of Switch Terms of a Vector Network Analyzer with Reciprocal Devices" 2023, e-print: <https://arxiv.org/abs/2306.07066>.
+[1] Z. Hatab, M. E. Gadringer and W. Bösch, "Indirect Measurement of Switch Terms of a Vector Network Analyzer with Reciprocal Devices,"  in _IEEE Microwave and Wireless Technology Letters_, 2023, doi: [10.1109/LMWT.2023.3311032](https://doi.org/10.1109/LMWT.2023.3311032), e-print doi: [10.48550/arXiv.2306.07066](https://doi.org/10.48550/arXiv.2306.07066).
 
 [2] R. B. Marks, "Formulations of the Basic Vector Network Analyzer Error Model including Switch-Terms," _50th ARFTG Conference Digest_, 1997, pp. 115-126, doi: [10.1109/ARFTG.1997.327265](https://doi.org/10.1109/ARFTG.1997.327265).
 

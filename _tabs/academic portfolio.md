@@ -34,10 +34,12 @@ order: 4
 
 - **Z. Hatab**, M. E. Gadringer and W. Bösch, "Propagation of Linear Uncertainties through Multiline Thru-Reflect-Line Calibration," in _IEEE Transactions on Instrumentation and Measurement_, vol. 72, pp. 1-9, 2023, doi: [10.1109/TIM.2023.3296123](https://doi.org/10.1109/TIM.2023.3296123), e-print doi: [10.48550/arXiv.2301.09126](https://doi.org/10.48550/arXiv.2301.09126).
 
-- **Z. Hatab**, M. E. Gadringer and W. Bösch, "A Thru-free Multiline Calibration," in _IEEE Transactions on Instrumentation and Measurement_, 2023, doi: [10.1109/TIM.2023.3308226](https://doi.org/10.1109/TIM.2023.3308226), e-print doi: [10.48550/arXiv.2305.03597](https://doi.org/10.48550/arXiv.2305.03597).
+- **Z. Hatab**, M. E. Gadringer and W. Bösch, "A Thru-free Multiline Calibration," in _IEEE Transactions on Instrumentation and Measurement_, vol. 72, pp. 1-9, 2023, doi: [10.1109/TIM.2023.3308226](https://doi.org/10.1109/TIM.2023.3308226), e-print doi: [10.48550/arXiv.2305.03597](https://doi.org/10.48550/arXiv.2305.03597).
+
+- **Z. Hatab**, M. E. Gadringer, A. B. Alothman Alterkawi and W. Bösch, "Validation of the Reference Impedance in Multiline Calibration with Stepped Impedance Standards," in _IEEE Open Journal of Instrumentation and Measurement_, 2023, doi: [10.1109/OJIM.2023.3315349](https://doi.org/10.1109/OJIM.2023.3315349), e-print doi: [10.48550/arXiv.2209.09163](https://doi.org/10.48550/arXiv.2209.09163).
+
+- **Z. Hatab**, M. E. Gadringer and W. Bösch, "Indirect Measurement of Switch Terms of a Vector Network Analyzer with Reciprocal Devices,"  in _IEEE Microwave and Wireless Technology Letters_, 2023, doi: [10.1109/LMWT.2023.3311032](https://doi.org/10.1109/LMWT.2023.3311032), e-print doi: [10.48550/arXiv.2306.07066](https://doi.org/10.48550/arXiv.2306.07066).
 
 ## E-prints
 
-- **Z. Hatab**, M. E. Gadringer, A. B. Alothman Alterkawi and W. Bösch, "Validation of the Reference Impedance in Multiline Calibration with Stepped Impedance Standards," 2023, e-print doi: [10.48550/arXiv.2209.09163](https://doi.org/10.48550/arXiv.2209.09163).
-
-- **Z. Hatab**, M. E. Gadringer and W. Bösch, "Indirect Measurement of Switch Terms of a Vector Network Analyzer with Reciprocal Devices," 2023, e-print doi: [10.48550/arXiv.2306.07066](https://doi.org/10.48550/arXiv.2306.07066).
+- **Z. Hatab**, M. E. Gadringer, and W. Bösch, "Symmetric-Reciprocal-Match Method for Vector Network Analyzer Calibration" 2023, e-print doi: [10.48550/arXiv.2309.02886](https://doi.org/10.48550/arXiv.2309.02886).
