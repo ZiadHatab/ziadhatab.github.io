@@ -24,11 +24,11 @@ order: 4
 
 - **Z. Hatab**, M. Gadringer and W. Bösch, "Propagation of Measurement and Model Uncertainties through Multiline TRL Calibration," _2022 Conference on Precision Electromagnetic Measurements (CPEM)_, Wellington, New Zealand, 2022, pp. 1-2, doi: N/A, e-print doi: [10.48550/arXiv.2206.10209](https://doi.org/10.48550/arXiv.2206.10209).
 
-- **Z. Hatab**, H. Takahashi, A. B. Alothman Alterkawi, M. E. Gadringer and W. Bösch, "A Quasi-TEM Approach for Designing Microvias for PCB Layer Transition with Minimal Return Loss," Accepted at _2023 53rd European Microwave Conference (EuMC)_, Berlin, Germany, 2023, pp. 1-4, doi: N/A.
+- **Z. Hatab**, H. Takahashi, A. B. Alothman Alterkawi, M. E. Gadringer and W. Bösch, "A Quasi-TEM Approach for Designing Microvias for PCB Layer Transition with Minimal Return Loss," _2023 53rd European Microwave Conference (EuMC)_, Berlin, Germany, 2023, pp. 1-4, doi: N/A.
 
 ## Articles
 
-- **Z. Hatab**, M. Gadringer, M. Habib and W. Bösch, "mm-Wave Complex Permittivity Extraction of LTCC Substrate Under the Influence of Surface Roughness," in _IEEE Transactions on Instrumentation and Measurement_, vol. 71, pp. 1-11, 2022, Art no. 6001711, doi: [10.1109/TIM.2022.3152319](https://doi.org/10.1109/TIM.2022.3152319).
+- **Z. Hatab**, M. Gadringer, M. Habib and W. Bösch, "mm-Wave Complex Permittivity Extraction of LTCC Substrate Under the Influence of Surface Roughness," in _IEEE Transactions on Instrumentation and Measurement_, vol. 71, pp. 1-11, 2022, doi: [10.1109/TIM.2022.3152319](https://doi.org/10.1109/TIM.2022.3152319).
 
 - **Z. Hatab**, A. Abdi, G. Steinbauer, M. E. Gadringer, and W. Bösch, "Propagation Constant Measurement Based on a Single Transmission Line Standard Using a Two-Port VNA," _Sensors_, vol. 23, no. 9, p. 4548, May 2023, doi: [10.3390/s23094548](https://doi.org/10.3390/s23094548), e-print doi: [10.48550/arXiv.2302.13859](https://doi.org/10.48550/arXiv.2302.13859).
 
@@ -36,9 +36,11 @@ order: 4
 
 - **Z. Hatab**, M. E. Gadringer and W. Bösch, "A Thru-free Multiline Calibration," in _IEEE Transactions on Instrumentation and Measurement_, vol. 72, pp. 1-9, 2023, doi: [10.1109/TIM.2023.3308226](https://doi.org/10.1109/TIM.2023.3308226), e-print doi: [10.48550/arXiv.2305.03597](https://doi.org/10.48550/arXiv.2305.03597).
 
-- **Z. Hatab**, M. E. Gadringer, A. B. Alothman Alterkawi and W. Bösch, "Validation of the Reference Impedance in Multiline Calibration with Stepped Impedance Standards," in _IEEE Open Journal of Instrumentation and Measurement_, 2023, doi: [10.1109/OJIM.2023.3315349](https://doi.org/10.1109/OJIM.2023.3315349), e-print doi: [10.48550/arXiv.2209.09163](https://doi.org/10.48550/arXiv.2209.09163).
+- **Z. Hatab**, M. E. Gadringer, A. B. Alothman Alterkawi and W. Bösch, "Validation of the Reference Impedance in Multiline Calibration with Stepped Impedance Standards," in _IEEE Open Journal of Instrumentation and Measurement_, vol. 2, pp. 1-12, 2023, doi: [10.1109/OJIM.2023.3315349](https://doi.org/10.1109/OJIM.2023.3315349), e-print doi: [10.48550/arXiv.2209.09163](https://doi.org/10.48550/arXiv.2209.09163).
 
 - **Z. Hatab**, M. E. Gadringer and W. Bösch, "Indirect Measurement of Switch Terms of a Vector Network Analyzer with Reciprocal Devices,"  in _IEEE Microwave and Wireless Technology Letters_, 2023, doi: [10.1109/LMWT.2023.3311032](https://doi.org/10.1109/LMWT.2023.3311032), e-print doi: [10.48550/arXiv.2306.07066](https://doi.org/10.48550/arXiv.2306.07066).
+
+- H. Takahashi, **Z. Hatab**, E. Schlaffer, H. Paulitsch, and W. Bösch, "Experimental analysis of grounded coplanar waveguide structures based on different PCB processes with uncertainty analysis" _IEICE Electronics Express_, 2023, doi: [10.1587/elex.20.20230381](https://doi.org/10.1587/elex.20.20230381).
 
 ## E-prints
 
