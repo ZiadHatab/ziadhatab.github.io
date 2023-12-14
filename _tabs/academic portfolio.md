@@ -24,7 +24,7 @@ order: 4
 
 - **Z. Hatab**, M. Gadringer and W. Bösch, "Propagation of Measurement and Model Uncertainties through Multiline TRL Calibration," _2022 Conference on Precision Electromagnetic Measurements (CPEM)_, Wellington, New Zealand, 2022, pp. 1-2, doi: N/A, e-print doi: [10.48550/arXiv.2206.10209](https://doi.org/10.48550/arXiv.2206.10209).
 
-- **Z. Hatab**, H. Takahashi, A. B. Alothman Alterkawi, M. E. Gadringer and W. Bösch, "A Quasi-TEM Approach for Designing Microvias for PCB Layer Transition with Minimal Return Loss," _2023 53rd European Microwave Conference (EuMC)_, Berlin, Germany, 2023, pp. 1-4, doi: N/A.
+- **Z. Hatab**, H. Takahashi, A. B. Alothman Alterkawi, M. E. Gadringer and W. Bösch, "A Quasi-TEM Approach for Designing Microvias for PCB Layer Transition with Minimal Return Loss," _2023 53rd European Microwave Conference (EuMC)_, Berlin, Germany, 2023, pp. 62-65, doi: [10.23919/EuMC58039.2023.10290259](https://doi.org/10.23919/EuMC58039.2023.10290259).
 
 ## Articles
 

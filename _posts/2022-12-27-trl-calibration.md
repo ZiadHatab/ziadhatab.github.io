@@ -58,7 +58,7 @@ The parameters $\\\{k_a, a_{11}, a_{21}, a_{12}, k_b, b_{11}, b_{21}, b_{12}\\\}
 
 ## Solving the Error Boxes with TRL Standards
 
-Now, that we have the model established, we shift our focus on the details of TRL calibration. As the acronym stands for Thru-Reflect-Line, we are working with three standards. The calibration is done in two steps. The first step we use the the line and the thru standard to form an eigenvalue problem to solve for normalized calibration coefficients. Then, in a second step we use the reflect standard and the thru standard again to undo the normalization.
+Now, that we have the model established, we shift our focus on the details of TRL calibration. As the acronym stands for Thru-Reflect-Line, we are working with three standards. The calibration is done in two steps. The first step we use the line and the thru standard to form an eigenvalue problem to solve for normalized calibration coefficients. Then, in a second step we use the reflect standard and the thru standard again to undo the normalization.
 
 ### The eigenvalue problem
 
@@ -149,7 +149,7 @@ The next step is to measure the reflect standard. The main property of the refle
 ![error box model of a two-port VNA when measuring a symmetric reflect standard.](block_error_box_model_symmetric_reflect.png)
 _Fig. 3.: error box model of a two-port VNA when measuring a symmetric reflect standard._
 
-In the figure above, $\Gamma$ is the reflection coefficient of the reflect standard. We don’t know its value, but it should be the same at both ports. Generally, it is prefer to use a Short standard as it radiate less than an Open standard. But also any reflective load could also be used. The measured reflection seen at the left error box is given by
+In the figure above, $\Gamma$ is the reflection coefficient of the reflect standard. We don’t know its value, but it should be the same on both ports. In general, it is better to use a short standard, as it radiates less than an open standard. However, any reflective load can be used. The measured reflection seen in the left error box is given by
 
 \begin{equation}
 \Gamma_a = \frac{a_{12}+a_{11}\Gamma}{1+a_{21}\Gamma}\quad\Longrightarrow\quad \Gamma=\frac{\Gamma_a-a_{12}}{a_{11}-a_{21}\Gamma_a}\label{eq:16}
