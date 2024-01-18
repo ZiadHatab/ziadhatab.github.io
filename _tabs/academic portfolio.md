@@ -42,6 +42,6 @@ order: 4
 
 - H. Takahashi, **Z. Hatab**, E. Schlaffer, H. Paulitsch, and W. Bösch, "Experimental analysis of grounded coplanar waveguide structures based on different PCB processes with uncertainty analysis" _IEICE Electronics Express_, 2023, doi: [10.1587/elex.20.20230381](https://doi.org/10.1587/elex.20.20230381).
 
-## E-prints
+- **Z. Hatab**, M. E. Gadringer and W. Bösch, "Symmetric-Reciprocal-Match Method for Vector Network Analyzer Calibration," in _IEEE Transactions on Instrumentation and Measurement_, vol. 73, pp. 1-11, 2024, Art no. 1001911, doi: [10.1109/TIM.2024.3350124](https://doi.org/10.1109/TIM.2024.3350124), e-print doi: [10.48550/arXiv.2309.02886](https://doi.org/10.48550/arXiv.2309.02886).
 
-- **Z. Hatab**, M. E. Gadringer, and W. Bösch, "Symmetric-Reciprocal-Match Method for Vector Network Analyzer Calibration" 2023, e-print doi: [10.48550/arXiv.2309.02886](https://doi.org/10.48550/arXiv.2309.02886).
+## E-prints
