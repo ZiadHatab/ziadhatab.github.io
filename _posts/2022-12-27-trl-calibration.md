@@ -2,7 +2,7 @@
 title: A Primer on TRL Calibration
 date: 2022-12-27 22:00:00 +0100
 categories: [Tutorial]
-tags: [vna, calibration]     # TAG names should always be lowercase
+tags: [vna, calibration, s-parameters, TRL]     # TAG names should always be lowercase
 math: true
 img_path: ../../../assets/img/posts_img/
 image: # TRL_waveguide_GCPW_kit.png
