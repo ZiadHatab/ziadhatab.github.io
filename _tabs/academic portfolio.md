@@ -26,6 +26,10 @@ order: 4
 
 - **Z. Hatab**, H. Takahashi, A. B. Alothman Alterkawi, M. E. Gadringer and W. Bösch, "A Quasi-TEM Approach for Designing Microvias for PCB Layer Transition with Minimal Return Loss," _2023 53rd European Microwave Conference (EuMC)_, Berlin, Germany, 2023, pp. 62-65, doi: [10.23919/EuMC58039.2023.10290259](https://doi.org/10.23919/EuMC58039.2023.10290259).
 
+- B. Schafsteller, M. Schwaemmlein, M. Rosin, G. Ramos, **Z. Hatab**, M.E. Gadringer, E. Schlaffer, "Investigating the Impact of Final Finishes on the Insertion Loss in As Received and After Aging," _IMAPSource Proceedings, vol. 2023_, no. Symposium, pp. 294–299, Feb. 2024, doi: [10.4071/001c.94519](https://doi.org/10.4071/001c.94519).
+
+- **Z. Hatab**, M. E. Gadringer and W. Bösch, "Error-Box Calibration of Three-Sampler VNAs," _2024 102nd ARFTG Microwave Measurement Conference (ARFTG)_, San Antonio, TX, USA, 2024, pp. 1-4, doi: [10.1109/ARFTG59840.2024.10460715](https://doi.org/10.1109/ARFTG59840.2024.10460715).
+
 ## Articles
 
 - **Z. Hatab**, M. Gadringer, M. Habib and W. Bösch, "mm-Wave Complex Permittivity Extraction of LTCC Substrate Under the Influence of Surface Roughness," in _IEEE Transactions on Instrumentation and Measurement_, vol. 71, pp. 1-11, 2022, doi: [10.1109/TIM.2022.3152319](https://doi.org/10.1109/TIM.2022.3152319).
