@@ -473,7 +473,7 @@ $$
 where $s_i$, $\bs{u}_i$, and $\bs{v}_i$ are the singular values and associated left and right singular vectors of the measurements in \eqref{eq:43}. Additionally, since \eqref{eq:44} has a symmetric structure, we can use the Takagi decomposition to split the matrix into a symmetric product, as given below:
 
 $$
-s_1\bs{u}_1\bs{v}_1^H + s_2\bs{u}_2\bs{v}2^H = \bs{U}_t\bs{S}_t\bs{U}_t^T = \underbrace{\bs{G}}_{N\times 2}\bs{G}^T,
+s_1\bs{u}_1\bs{v}_1^H + s_2\bs{u}_2\bs{v}_2^H = \bs{U}_t\bs{S}_t\bs{U}_t^T = \underbrace{\bs{G}}_{N\times 2}\bs{G}^T,
 \label{eq:47}
 $$
 
