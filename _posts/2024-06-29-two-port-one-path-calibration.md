@@ -2,7 +2,7 @@
 title: Two-port/One-path Calibration
 date: 2024-06-29 12:00:00 +0100
 categories: [Tutorial]
-tags: [vna, calibration, s-parameters, SOLT, three-receivers]     # TAG names should always be lowercase
+tags: [vna, calibration, s-parameters, solt, three-receivers]     # TAG names should always be lowercase
 math: true
 img_path: ../../../assets/img/posts_img/
 image: # TRL_waveguide_GCPW_kit.png
