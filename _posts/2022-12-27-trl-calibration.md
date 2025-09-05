@@ -412,7 +412,7 @@ n = \left\lfloor \frac{q - (q+1)\varphi/180}{1-q} \right\rfloor \quad\Longrighta
 
 I should note here that there will be cases where you specify a very wide bandwidth, you will get $n=0$, but you will also get a phase margin smaller than the one you specified. In general, for a desired phase margin of $20^{\circ}$ or higher, you would want $f_\mathrm{max} \leq 8f_\mathrm{min}$. In fact, a more general equation for any phase margin between $0^\circ$ and $90^\circ$ is given by
 \begin{equation}
-f_\mathrm{max} \leq \frac{\varphi}{180-\varphi}f_\mathrm{min}
+f_\mathrm{max} \leq \frac{180-\varphi}{\varphi}f_\mathrm{min}
 \label{eq:42}
 \end{equation}
 
