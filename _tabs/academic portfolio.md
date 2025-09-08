@@ -5,7 +5,6 @@ icon: fas fa-university
 order: 4
 ---
 
-
 ## Conferences
 
 - **Z. Hatab**, E. Leitgeb and M. E. Gadringer, "Broadband Characterization of Co-planar GSG Wirebonds for RF Heterogeneous 2.5D Integration," _2021 97th ARFTG Microwave Measurement Conference (ARFTG)_, Atlanta, GA, USA, 2021, pp. 1-4, doi: [10.1109/ARFTG52261.2021.9640137](https://doi.org/10.1109/ARFTG52261.2021.9640137).
@@ -30,6 +29,12 @@ order: 4
 
 - **Z. Hatab**, M. E. Gadringer and W. Bösch, "Error-Box Calibration of Three-Sampler VNAs," _2024 102nd ARFTG Microwave Measurement Conference (ARFTG)_, San Antonio, TX, USA, 2024, pp. 1-4, doi: [10.1109/ARFTG59840.2024.10460715](https://doi.org/10.1109/ARFTG59840.2024.10460715).
 
+- A. Arsanjani, **Z. Hatab**, A. B. A. Alterkawi, M. E. Gadringer and W. Bösch, "Modified Semi-Additive Manufacturing of PCBs for Enabling Accurate Device Measurements at Millimeter-Wave and Sub-Terahertz Frequencies," _2024 103rd ARFTG Microwave Measurement Conference (ARFTG)_, Washington, DC, USA, 2024, pp. 1-4, doi: [10.1109/ARFTG61196.2024.10660794](https://doi.org/10.1109/ARFTG61196.2024.10660794).
+
+- A. Abdi, A. Arsanjani, **Z. Hatab**, G. Steinbauer, M. E. Gadringer and W. Bösch, "Design of PCB Transitions with Low Return Loss to Interface with Suspended Stripline up to 100 GHz," _2024 54th European Microwave Conference (EuMC)_, Paris, France, 2024, pp. 537-540, doi: [10.23919/EuMC61614.2024.10732724](https://doi.org/10.23919/EuMC61614.2024.10732724).
+
+- A. Arsanjani, A. Abdi, **Z. Hatab**, A. B. A. Alterkawi, M. E. Gadringer and W. Bösch, "Miniaturized Ka-Band Metasurface Filter With Wide Out-of-Band Rejection up to the 5th Harmonic," _2024 54th European Microwave Conference (EuMC)_, Paris, France, 2024, pp. 188-191, doi: [10.23919/EuMC61614.2024.10732666](https://doi.org/10.23919/EuMC61614.2024.10732666).
+
 ## Articles
 
 - **Z. Hatab**, M. Gadringer, M. Habib and W. Bösch, "mm-Wave Complex Permittivity Extraction of LTCC Substrate Under the Influence of Surface Roughness," in _IEEE Transactions on Instrumentation and Measurement_, vol. 71, pp. 1-11, 2022, doi: [10.1109/TIM.2022.3152319](https://doi.org/10.1109/TIM.2022.3152319).
@@ -47,3 +52,17 @@ order: 4
 - H. Takahashi, **Z. Hatab**, E. Schlaffer, H. Paulitsch, and W. Bösch, "Experimental analysis of grounded coplanar waveguide structures based on different PCB processes with uncertainty analysis" _IEICE Electronics Express_, 2023, doi: [10.1587/elex.20.20230381](https://doi.org/10.1587/elex.20.20230381).
 
 - **Z. Hatab**, M. E. Gadringer and W. Bösch, "Symmetric-Reciprocal-Match Method for Vector Network Analyzer Calibration," in _IEEE Transactions on Instrumentation and Measurement_, vol. 73, pp. 1-11, 2024, Art no. 1001911, doi: [10.1109/TIM.2024.3350124](https://doi.org/10.1109/TIM.2024.3350124), e-print doi: [10.48550/arXiv.2309.02886](https://doi.org/10.48550/arXiv.2309.02886).
+
+## Awards
+
+- **ARFTG 98th (2022) – Best Paper**  
+    For the paper _"Improving The Reliability of The Multiline TRL Calibration Algorithm"_ presented at the 2022 98th ARFTG Microwave Measurement Conference (ARFTG), Las Vegas, NV, USA.
+
+- **CPEM 2022 – Early Career Award**  
+    For the paper _"Propagation of Measurement and Model Uncertainties through Multiline TRL Calibration"_ presented at the 2022 Conference on Precision Electromagnetic Measurements, Wellington, New Zealand.
+
+- **APMC 2022 – Student Prize**  
+    For the paper _"Experimental Characterization of Microvias Using TRL Calibration with Uncertainty Analysis"_ presented at the 2022 Asia-Pacific Microwave Conference, Yokohama, Japan.
+
+- **ARFTG 102nd (2024) – Best Student Paper**  
+    For the paper _"Error-Box Calibration of Three-Sampler VNAs"_ presented at the 2024 102nd ARFTG Microwave Measurement Conference (ARFTG), San Antonio, TX, USA.
