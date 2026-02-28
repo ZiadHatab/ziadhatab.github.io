@@ -35,6 +35,8 @@ order: 4
 
 - A. Arsanjani, A. Abdi, **Z. Hatab**, A. B. A. Alterkawi, M. E. Gadringer and W. Bösch, "Miniaturized Ka-Band Metasurface Filter With Wide Out-of-Band Rejection up to the 5th Harmonic," _2024 54th European Microwave Conference (EuMC)_, Paris, France, 2024, pp. 188-191, doi: [10.23919/EuMC61614.2024.10732666](https://doi.org/10.23919/EuMC61614.2024.10732666).
 
+- **Z. Hatab** and B. Schrijver, "A Reliable 2nd-Tier Procedure for Characterizing Devices with N+1 Ports Using an N-Port VNA," _2025 55th European Microwave Conference (EuMC)_, Utrecht, Netherlands, 2025, pp. 572-575, doi: [10.23919/EuMC65286.2025.11235223](https://doi.org/10.23919/EuMC65286.2025.11235223).
+
 ## Articles
 
 - **Z. Hatab**, M. Gadringer, M. Habib and W. Bösch, "mm-Wave Complex Permittivity Extraction of LTCC Substrate Under the Influence of Surface Roughness," in _IEEE Transactions on Instrumentation and Measurement_, vol. 71, pp. 1-11, 2022, doi: [10.1109/TIM.2022.3152319](https://doi.org/10.1109/TIM.2022.3152319).
@@ -53,9 +55,15 @@ order: 4
 
 - **Z. Hatab**, M. E. Gadringer and W. Bösch, "Symmetric-Reciprocal-Match Method for Vector Network Analyzer Calibration," in _IEEE Transactions on Instrumentation and Measurement_, vol. 73, pp. 1-11, 2024, Art no. 1001911, doi: [10.1109/TIM.2024.3350124](https://doi.org/10.1109/TIM.2024.3350124), e-print doi: [10.48550/arXiv.2309.02886](https://doi.org/10.48550/arXiv.2309.02886).
 
+- **Z. Hatab**, M. E. Gadringer, A. Arsanjani and W. Bösch, "Automatic Model Extraction of the Match Standard in Symmetric-Reciprocal-Match Calibration," in _IEEE Transactions on Instrumentation and Measurement_, 2026, doi: [10.1109/TIM.2026.3664542](https://doi.org/10.1109/TIM.2026.3664542), e-print doi: [10.48550/arXiv.2509.18426](https://doi.org/10.48550/arXiv.2509.18426).
+
+## E-Prints
+
+- **Z. Hatab**, M. E. Gadringer, and W. Bösch, "The Choice of Line Lengths in Multiline Thru-Reflect-Line Calibration," _arXiv_, 2025, e-print doi: [10.48550/arXiv.2512.18641](https://doi.org/10.48550/arXiv.2512.18641)
+
 ## Awards
 
-- **ARFTG 98th (2022) – Best Paper**  
+- **ARFTG 98th – Best Paper**  
     For the paper _"Improving The Reliability of The Multiline TRL Calibration Algorithm"_ presented at the 2022 98th ARFTG Microwave Measurement Conference (ARFTG), Las Vegas, NV, USA.
 
 - **CPEM 2022 – Early Career Award**  
@@ -64,5 +72,5 @@ order: 4
 - **APMC 2022 – Student Prize**  
     For the paper _"Experimental Characterization of Microvias Using TRL Calibration with Uncertainty Analysis"_ presented at the 2022 Asia-Pacific Microwave Conference, Yokohama, Japan.
 
-- **ARFTG 102nd (2024) – Best Student Paper**  
+- **ARFTG 102nd – Best Student Paper**  
     For the paper _"Error-Box Calibration of Three-Sampler VNAs"_ presented at the 2024 102nd ARFTG Microwave Measurement Conference (ARFTG), San Antonio, TX, USA.

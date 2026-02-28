@@ -10,7 +10,7 @@ image: # TRL_waveguide_GCPW_kit.png
 
 When using a vector network analyzer (VNA) to measure a device under test (DUT), calibration is a critical step. While there are many calibration methods out there, I believe the thru-reflect-line (TRL) method [1] is one of the best in microwave metrology. Designing a TRL kit is fairly easy and you can manufacture one yourself with PCBs.
 
-In this post, I'll walk you through the mathematical development of TRL calibration. I have also included a section that will guide you through the design of your own TRL kit. By the end of this post, you'll be able to implement the calibration yourself and design your own TRL kit with confidence. Also, in my GitHub repository I have Python scripts and measurements to can help you further: <https://github.com/ZiadHatab/trl-calibration>
+In this post, I'll walk you through the mathematical development of TRL calibration. I have also included a section that will guide you through the design of your own TRL kit. By the end of this post, you'll be able to implement the calibration yourself and design your own TRL kit with confidence. Also, I have Python scripts and measurements on my GitHub repository that can help you further: <https://github.com/ZiadHatab/trl-calibration>
 
 If you are more interested in multiline TRL calibration, then check my other [post on this topic](https://ziadhatab.github.io/posts/multiline-trl-calibration/).
 
@@ -37,7 +37,7 @@ Now that we've cleared up the caveats about the error box model, we can delve in
 ![Block diagram of the error box model of a two-port VNA](block_error_box_model.png)
 _Fig. 2. Block diagram of the error box model of a two-port VNA._
 
-The conversion between the S-parameters and T-parameters is give by
+The conversion between the S-parameters and T-parameters is given by
 
 \begin{equation}
 \bs{T} = \frac{1}{S_{21}}\begin{bmatrix} S_{12}S_{21}-S_{11}S_{22} & S_{11} \\\ -S_{22} & 1\end{bmatrix}, \qquad
@@ -58,11 +58,11 @@ The parameters $\\\{k_a, a_{11}, a_{21}, a_{12}, k_b, b_{11}, b_{21}, b_{12}\\\}
 
 ## Solving the Error Boxes with TRL Standards
 
-Now, that we have the model established, we shift our focus on the details of TRL calibration. As the acronym stands for Thru-Reflect-Line, we are working with three standards. The calibration is done in two steps. The first step we use the line and the thru standard to form an eigenvalue problem to solve for normalized calibration coefficients. Then, in a second step we use the reflect standard and the thru standard again to undo the normalization.
+With the model established, we can now focus on the details of TRL calibration. As the name suggests, TRL uses three standards: Thru, Reflect, and Line. Calibration proceeds in two steps: in the first step, we use the line and thru standards to form an eigenvalue problem and solve for normalized calibration coefficients; in the second step, we use the reflect standard, together with the thru, to undo the normalization.
 
 ### The eigenvalue problem
 
-The start by measuring the thru and line standard, described in their T-parameters:
+We start by measuring the thru and line standards, described by their T-parameters:
 
 \begin{equation}
 \bs{M}\_\mathrm{thru} = k\bs{A}\begin{bmatrix}1 & 0 \\\ 0 & 1\end{bmatrix}\bs{B}, \qquad
@@ -81,7 +81,7 @@ Eq. \eqref{eq:6} is the eigenvalue problem we are looking for, where $e^{-l\gamm
 \bs{M}\_\mathrm{line}\bs{M}^{-1}\_\mathrm{thru}\begin{bmatrix} a_{11} \\\ a_{21}\end{bmatrix} = e^{-l\gamma}\begin{bmatrix} a_{11} \\\ a_{21}\end{bmatrix};\qquad \bs{M}\_\mathrm{line}\bs{M}^{-1}\_\mathrm{thru}\begin{bmatrix} a_{12} \\\ 1\end{bmatrix} = e^{l\gamma}\begin{bmatrix} a_{12}\\\ 1\end{bmatrix}\label{eq:7}
 \end{equation}
 
-This means, if apply the [eigendecomposition](https://en.wikipedia.org/wiki/Eigendecomposition_of_a_matrix) of $\bs{M}\_\mathrm{line}\bs{M}^{-1}\_\mathrm{thru}$ we should recover the matrix $\bs{A}$ directly, right?! Well, not completely, we have two issues to deal with:
+This means, if we apply the [eigendecomposition](https://en.wikipedia.org/wiki/Eigendecomposition_of_a_matrix) of $\bs{M}\_\mathrm{line}\bs{M}^{-1}\_\mathrm{thru}$ we should recover the matrix $\bs{A}$ directly—right? Well, not completely. There are two issues to deal with:
 
 1. When we apply the eigendecomposition, the order of the eigenvalues is arbitrary. From our point of view, we only get the two eigenvalues as numbers and we don't know which one represents $e^{-l\gamma}$ or $e^{l\gamma}$.
 
@@ -104,7 +104,7 @@ a_{21}/a_{11} = \bs{v}\_1[1]/\bs{v}\_1[0]; \qquad a_{12} = \bs{v}\_2[0]/\bs{v}\_
 \end{equation}
 where the indexing of the vector starts at 0.
 
-Before we continue discussing about how to denormalize the coefficient $a_{21}/a_{11}$, we first need to solve for the right error box $\bs{B}$. Similar to Eq. \eqref{eq:6}, we can also write an eigenvalue problem for $\bs{B}$ as follows:
+Before discussing how to denormalize the coefficient $a_{21}/a_{11}$, we first need to solve for the right error box $\bs{B}$. Similar to Eq. \eqref{eq:6}, we can also write an eigenvalue problem for $\bs{B}$ as follows:
 
 \begin{equation}
 (\bs{M}^{-1}\_\mathrm{thru}\bs{M}\_\mathrm{line})^T = \bs{B}^T\begin{bmatrix} e^{-l\gamma} & 0 \\\ 0 & e^{l\gamma}\end{bmatrix}(\bs{B}^T)^{-1}\label{eq:10}
@@ -126,7 +126,7 @@ b_{12}/b_{11} = \bs{u}\_1[1]/\bs{u}\_1[0];\qquad b_{21} = \bs{u}\_2[0]/\bs{u}\_2
 
 ### Error terms denormalization
 
-To finalize the calibration, we need to denormalize $a_{21}/a_{11}$ and $b_{12}/b_{11}$, and solve for the 7th error term $k$ (I haven't forgotten about it). The first what we can do is to use the Thru standard measurement and express the error boxes in terms of their normalized coefficients. This looks something like:
+To finalize the calibration, we need to denormalize $a_{21}/a_{11}$ and $b_{12}/b_{11}$, and solve for the 7th error term $k$ (I haven't forgotten about it). First, we use the thru measurement and express the error boxes in terms of their normalized coefficients. This looks something like:
 
 \begin{equation}
 \bs{M}\_\mathrm{thru} = k\underbrace{\begin{bmatrix} 1 & a_{12} \\\ a_{21}/a_{11} & 1\end{bmatrix}\begin{bmatrix} a_{11} & 0 \\\ 0 & 1\end{bmatrix}}\_{\bs{A}}\underbrace{\begin{bmatrix} b_{11} & 0 \\\ 0 & 1\end{bmatrix}\begin{bmatrix} 1 & b_{12}/b_{11} \\\ b_{21} & 1\end{bmatrix}}_{\bs{B}}\label{eq:13}
@@ -190,7 +190,7 @@ Now, that we have $a_{11}$ and $b_{11}$, the matrices $\bs{A}$ and $\bs{B}$ are 
 \bs{A}=\begin{bmatrix} 1 & a_{12} \\\ a_{21}/a_{11} & 1\end{bmatrix}\begin{bmatrix} a_{11} & 0 \\\ 0 & 1\end{bmatrix}; \qquad \bs{B} = \begin{bmatrix} b_{11} & 0 \\\ 0 & 1\end{bmatrix}\begin{bmatrix} 1 & b_{12}/b_{11} \\\ b_{21} & 1\end{bmatrix}\label{eq:20}
 \end{equation}
 
-> Everything we derived here is based on the definition of T-parameters as given in Eq. \eqref{eq:2}. Be carful with this, because there are authors that use a different definition for the T-parameters. For example, Michael Steer, in his open access books, he defines the T-parameters as:
+> Everything we derived here is based on the definition of T-parameters as given in Eq. \eqref{eq:2}. Be careful with this, because there are authors who use a different definition for the T-parameters. For example, Michael Steer, in his open access books, he defines the T-parameters as:
 \\[
 \bs{T} = \frac{1}{S_{21}}\begin{bmatrix} 1 & -S_{22} \\\ S_{11} & S_{12}S_{21}-S_{11}S_{22}\end{bmatrix}; \qquad \bs{S} = \frac{1}{T_{11}}\begin{bmatrix}T_{21} & T_{11}T_{22}-T_{12}T_{21}\\\ 1 & -T_{12}\end{bmatrix}
 \\]
@@ -249,7 +249,7 @@ We extract the exponent using the logarithmic $e$, which gives us
 \log(\lambda_2/\lambda_1) = 2\gamma^{\mathrm{unwrap}} l+ jn2\pi, \qquad \text{for any } n\in\\{0,\pm1,\pm2,\ldots\\}\label{eq:23}
 \end{equation}
 
-The extra phase-wrapping factor you see is the result of taking the logarithm of complex numbers, as is unique only in the principle brach $[-\pi,\pi]$. You can read more about the complex logarithm on [Wikipedia](https://en.wikipedia.org/wiki/Complex_logarithm). For now, we just need to determine the wrap factor to accurately determine $\gamma$. We do this by using the approximation we used to distinguish the eigenvalues. So, the equation to determine $n$ is as follows
+The extra phase-wrapping factor arises from taking the logarithm of complex numbers, which is unique only in the principal branch $[-\pi,\pi]$. You can read more about the complex logarithm on [Wikipedia](https://en.wikipedia.org/wiki/Complex_logarithm). For now, we just need to determine the wrap factor to accurately determine $\gamma$. We do this by using the approximation we used to distinguish the eigenvalues. So, the equation to determine $n$ is as follows
 \begin{equation}
 n = \mathrm{round}\left(
     \frac{\Im{\log(\lambda_2/\lambda_1) - 2\gamma^{\mathrm{est}}l}}{2\pi}
@@ -313,7 +313,7 @@ To learn more about the origin of the transformation matrix, see section _"3.7 C
 
 ## Design TRL Kit
 
-So this is the most important part of the discussion. Even if you master the math above, if you still make crappy TRL kit, there is no math to fix it. So, the goal of this section is to make you aware of the limitations of TRL kit, which aspects you need to pay attention to, and which of those you need to relax your thinking about.
+This is the most important part of the discussion. Even if you master the math above, a poorly designed TRL kit cannot be saved by better algorithms. The goal of this section is to make you aware of the TRL kit's limitations: which aspects demand careful attention, and where you can afford to be more flexible.
 
 ### Line length from frequency range and vice versa
 
@@ -445,12 +445,12 @@ To determine the physical length of the thru standard, consider the following:
 
 ### What should the reflect standard be?
 
-Misconceptions exist about implementing the reflect standard. Some say it must be in the same media as line and thru standards, while others suggest adding an offset or using single-mode propagation. These statements are somewhat true, but can cause confusion when overgeneralized.
+There are common misconceptions about the reflect standard. Some claim it must use the same medium as the line and thru standards; others insist on adding an offset or requiring single-mode propagation. These statements have some truth to them, but become misleading when overgeneralized.
 
 The reflect standard must meet three strict properties:
 
-1. It must be reflective (duhhh~).
-2. It must be symmetrical ( same from both ports).
+1. It must be reflective (duh~~).
+2. It must be symmetrical (same from both ports).
 3. You must know an estimate of the reflection to resolve sign ambiguity during calibration.
 
 There are possible problems you may encounter during implementation:

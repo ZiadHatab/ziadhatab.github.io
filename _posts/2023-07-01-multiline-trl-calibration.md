@@ -8,9 +8,11 @@ img_path: ../../../assets/img/posts_img/
 image: # TRL_waveguide_GCPW_kit.png
 ---
 
-I believe there is a defining moment for those of us who perform RF measurements: the time before mastering TRL calibration and the time after. TRL calibration is a powerful tool for VNA calibration. More importantly for planar circuit measurements where in-situ probing is often not possible. However, as I discussed in my [previous post on TRL](https://ziadhatab.github.io/posts/trl-calibration/), TRL calibration is bandwidth-limited. This is where the multiline version comes in, which enables broader frequency coverage.
+TRL calibration is one of the most powerful tools for VNA calibration, especially for planar circuit measurements where in-situ probing is often not possible. However, as I discussed in my [previous post on TRL](https://ziadhatab.github.io/posts/trl-calibration/), TRL calibration is bandwidth-limited. This is where the multiline version comes in, enabling broader frequency coverage.
 
 The purpose of this post is to provide the mathematical background for implementing multiline TRL calibration. I will not be discussing how to implement the NIST version [1,2]; instead, I will show you my own version [3], which is based on a different formulation and makes fewer assumptions. You can check out my GitHub repository for Python scripts and measurements, where I also provide an example analyzing the statistical difference between my method and NIST's method: <https://github.com/ZiadHatab/multiline-trl-calibration>
+
+For computing suitable line lengths for your custom multiline TRL kit, see my GitHub repository on this: <https://github.com/ZiadHatab/line-length-multiline-trl-calibration>
 
 ## The Bandwidth Limitation of TRL Calibration
 
@@ -58,9 +60,9 @@ $$
 
 Therefore, at critical frequencies, which are multiples of half-wavelength, we lose all information about the error boxes.
 
-The frequency limitation of the TRL method can be overcome by using the multiline TRL method developed by NIST [1,2]. This method employs multiple lines of different lengths to create multiple eigenvalue problems from different line pairs. The algorithm is based on a first-order approximation of the error box to describe any statistical error as having a linear effect. By solving the eigenevalue problem of each pair, it then combines the results of the pairs linearly using the Gauss-Markov weighted linear least squares method. However, a common line to all pairs must be chosen, resulting in $N-1$ pairs for $N$ lines. The choice of the common line can be different at each frequency, often resulting in abnormal discontinuities along the frequency axis. This can also lead to poor results if one or more pairs are singular. Additionally, the method assumes equal disturbance at both ports, which may not always be the case. The multiline TRL method from NIST is optimal only when all its assumptions are met, but poor results may occur if these conditions are not met.
+The frequency limitation of TRL can be overcome using the multiline TRL method developed by NIST [1,2]. It employs multiple lines of different lengths, generating multiple eigenvalue problems from different line pairs. The algorithm relies on a first-order approximation, treating any statistical error as having a linear effect on the error boxes. Each pair's eigenvalue problem is solved independently, and the results are combined using the Gauss-Markov weighted linear least-squares method. However, a common line shared by all pairs must be chosen, yielding $N-1$ pairs for $N$ lines. This common line can change across frequencies, often introducing discontinuities along the frequency axis. The method can also produce poor results when one or more pairs are near-singular, and it assumes equal disturbance at both ports, an assumption that does not always hold.
 
-As mentioned earlier, I will not delve into the implementation of the NIST multiline TRL method. If you are interested in the NIST approach, please refer to [1,2]. Instead, I will present an alternative method [3] that is more reliable, does not make any approximation assumptions, and is easier to implement. I will refer to this method as the TUG multiline TRL to differentiate it from the NIST multiline TRL. TUG stands for TU Graz, the university where I conducted research on this topic. Below is a brief comparison between NIST and TUG multiline TRL methods:
+I will not cover the NIST implementation here; see [1,2] for details. Instead, I present an alternative method [3] that is more reliable, makes no approximation assumptions, and is easier to implement. I will refer to this method as the TUG multiline TRL to differentiate it from the NIST multiline TRL. TUG stands for TU Graz, the university where I conducted research on this topic. Below is a brief comparison between NIST and TUG multiline TRL methods:
 
 _NIST multiline TRL [1,2]_:
 
@@ -79,7 +81,7 @@ _TUG multiline TRL [3]_:
 
 ## Derivation of TUG Multiline TRL Calibration
 
-The basic blocks of TUG multiline TRL method are shown in the flowchart below, which basically can be simplified into three points:
+The TUG multiline TRL method is shown in the flowchart below and can be summarized in three steps:
 
 - Using the line measurements to formulate and solve the $4\times 4$ weighted eigenvalue problem, which also involves computing the weighting matrix.
 - Solving for the propagation constant using the line measurements and the normalized error terms.
@@ -102,7 +104,7 @@ $$
 In the TUG multiline TRL formulation, we use Kronecker product $\otimes$ notation and apply the vectorization operator $\vc{}$ to express the above equation. When we apply vectorization to the product of three matrices, the following property generally holds:
 
 $$
-\vc{\bs{X}\bs{Y}\bs{Z}} = (\bs{Z}^T\otimes \bs{X})\vc{\bs{X}}
+\vc{\bs{X}\bs{Y}\bs{Z}} = (\bs{Z}^T\otimes \bs{X})\vc{\bs{Y}}
 \label{eq:6}
 $$
 
@@ -115,7 +117,7 @@ $$
 \label{eq:7}
 $$
 
-Below is the expanded evaluation of the Kronecker product so you can see what it looks like:
+The expanded Kronecker product is:
 
 $$
 \bs{B}^T\otimes\bs{A} = \left[\begin{matrix}a_{11} b_{11} & a_{12} b_{11} & a_{11} b_{21} & a_{12} b_{21}\\a_{21} b_{11} & b_{11} & a_{21} b_{21} & b_{21}\\a_{11} b_{12} & a_{12} b_{12} & a_{11} & a_{12}\\a_{21} b_{12} & b_{12} & a_{21} & 1\end{matrix}\right]
@@ -163,7 +165,7 @@ $$
 \label{eq:12}
 $$
 
-We currently have two equations that both describe the same line. One equation describes the measurements, while the other describes the inverse of the measurements. Our objective is to include all lines in our analysis. Since the error box resulting from the Kronecker product remains constant when measuring different standards, we can easily extend the equations by adding all vectorized measurements to them, as done below:
+We now have two equations describing the same line: one for the measurements and one for their inverses. Since the error box from the Kronecker product is constant across all standards, we can collect all lines together as follows:
 
 $$
 \begin{aligned}
@@ -204,7 +206,7 @@ $$
 \label{eq:20}
 $$
 
-The proof of the above equations is straightforward. However, it should be noted that this is only valid for $2 \times 2$ matrices, as the adjugate matrix of this size is essentially a permutation operation with sign change. Additionally, it should be noted that $\det(\bs{L}_i) = 1$, as line standards are reciprocal devices.
+The proof is straightforward, though note that this simplification is only valid for $2 \times 2$ matrices, since the adjugate of such a matrix is essentially a permutation with sign change. Also note that $\det(\bs{L}_i) = 1$, as line standards are reciprocal.
 
 With the above simplification, we can replace $\overbar{\bs{M}}$ and $\overbar{\bs{L}}$ with the following expressions:
 
@@ -320,7 +322,7 @@ $$
 \label{eq:32}
 $$
 
-We were able to convert the similarity problem into an eigenvalue problem by choosing a skew-symmetric matrix as the weighting matrix. However, we need to determine the optimal values for the entries of this matrix. We define the optimality of the weighting matrix as the matrix that minimizes the sensitivity of the eigenvectors.
+Choosing a skew-symmetric $\bs{W}$ converts the similarity problem into an eigenvalue problem. The remaining task is to find optimal entries, specifically those that minimize the sensitivity of the eigenvectors.
 
 According to eigendecomposition perturbation theory [8] (also on [Wikipedia](https://en.wikipedia.org/wiki/Eigenvalue_perturbation)), the sensitivity of the eigenvectors is inversely proportional to the Euclidean distance between the eigenvalues, also known as the eigengap. Therefore, to minimize the sensitivity of the eigenvectors, we need to maximize the distance between the eigenvalues.
 
@@ -349,7 +351,7 @@ $$
 
 with $()^{*}$ being the complex conjugate operator (without transpose), and $()^H$ is the Hermitian transpose (conjugate transpose).
 
-To calculate $\bs{W}\_\mathrm{opt}$, one method is to evaluate the expression above using the propagation constant and line lengths. However, at this point, we may not have an accurate estimate of the propagation constant. In the next section, I will discuss how to obtain $\bs{W}\_\mathrm{opt}$ directly from the line measurements using Takagi decomposition.
+One approach to computing $\bs{W}\_\mathrm{opt}$ is to evaluate the expression above directly from the propagation constant and line lengths. However, an accurate estimate of the propagation constant may not be available at this stage. In the next section, I show how to obtain $\bs{W}\_\mathrm{opt}$ directly from the line measurements using Takagi decomposition.
 
 Once we have $\bs{W}\_\mathrm{opt}$, we need to solve for the eigenvectors that correspond to the solution of $\bs{X} = \bs{B}^{T}\otimes\bs{A}$. Eigenvectors are only unique up to a scalar multiple, so they have to be normalized to get a unique answer. Since $\bs{X}$ is a $4\times 4$ matrix, there are four eigenvectors. I chose to normalize all diagonal elements to be 1. Other normalization choices could have been made, but this choice makes it simpler to denormalize later. This results in the normalized error terms of the following form:
 
@@ -492,7 +494,7 @@ The sign ambiguity arises from the arbitrary order of the sum in the matrix deco
 
 ### Computing the propagation constant
 
-To begin, we apply the normalized combined error box $\widetilde{\bs{X}}$ that were derived in the previous section to the *i*-th measured line. The procedure is as follows:
+We begin by applying the normalized combined error box $\widetilde{\bs{X}}$ derived in the previous section to the *i*-th measured line. The procedure is as follows:
 
 $$
 \begin{aligned}
@@ -539,14 +541,14 @@ $$
 
 The indexing notation used here is based on Python programming, which starts at zero.
 
-To account for both positive and negative complex exponential terms, we calculate their average by defining a new vector $\bs{\tau}$ as follows:
+To combine both the positive and negative complex exponentials, we average them by defining a new vector $\bs{\tau}$:
 
 $$
 \bs{\tau} = \begin{bmatrix} \frac{e^{\gamma l_2} + 1/e^{-\gamma l_2}}{2} & \frac{e^{\gamma l_3} + 1/e^{-\gamma l_3}}{2} & \cdots & \frac{e^{\gamma l_N} + 1/e^{-\gamma l_N}}{2} \end{bmatrix}^T.
 \label{eq:53}
 $$
 
-In the next step, we apply the logarithm to extract the exponents, which is given by
+We then apply the logarithm to extract the exponents:
 
 $$
 \bs{\phi} = \log\left( \bs{\tau}\right) + j2\pi \bs{n}, \quad \text{where, } \bs{n}\in\mathbb{Z}^{N-1}.
@@ -582,7 +584,7 @@ The matrix $\bs{I}$ represents the identity matrix, and $\bs{1}$ represents a ve
 
 To denormalize the error boxes, we must determine the error terms $a_{11}$, $b_{11}$, and the last error term $k$ to complete the calibration. In this discussion, we will solve for $a_{11}$, $b_{11}$, and $k$ using measurements from a thru and a symmetric reflect standards.
 
-In the figure below, you see the error box model of a thru standard and symmetric reflect standard. By measuring the thru standard, we can calculate the terms $k$ and $a_{11}b_{11}$ directly by applying the normalized combined error box as follows:
+The figure below shows the error box model for the thru and symmetric reflect standards. Measuring the thru standard lets us directly compute $k$ and $a_{11}b_{11}$ by applying the normalized combined error box:
 
 $$
 \begin{aligned}

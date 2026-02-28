@@ -8,7 +8,7 @@ img_path: ../../../assets/img/posts_img/
 image: # TRL_waveguide_GCPW_kit.png
 ---
 
-Switch terms are a concept that is often misunderstood in vector network analyzers (VNAs). Although they are essential for VNA calibration, VNA vendors tend not to discuss them in their user manuals. Unlike S-parameters, switch terms cannot be directly selected to display in your VNA. Instead, you must define them yourself using wave parameters.
+Switch terms are a concept that is often misunderstood in vector network analyzers (VNAs). Although they are essential for VNA calibration, VNA vendors rarely discuss them in their user manuals. Unlike S-parameters, switch terms cannot be directly selected and displayed on a VNA; instead, they must be defined using wave parameters.
 
 The purpose of this post is to help you understand the physical meaning of switch terms, explain what they are, and show you how the math is defined. Additionally, I will show you a technique for indirectly measuring switch terms from the VNA using a couple of reciprocal devices [1]. For sample measurements and Python scripts, check my GitHub repository: <https://github.com/ZiadHatab/vna-switch-terms>
 
@@ -35,26 +35,26 @@ $$
 \label{eq:2}
 $$
 
-The most common way for solving S-parameters, which is often how S-parameters are taught to many people, involves setting one of the incident waves to zero and solving for the S-parameters as ratios. This is expressed as follows:
+The most common way to solve for S-parameters, and how they are often taught, is to set one incident wave to zero and express each S-parameter as a ratio:
 
 $$
 S_{11} = \left. \frac{\hat{b}_1}{\hat{a}_1}\right|_{\hat{a}_2=0}, \qquad S_{12} = \left. \frac{\hat{b}_1}{\hat{a}_2}\right|_{\hat{a}_1=0}, \qquad S_{21} = \left. \frac{\hat{b}_2}{\hat{a}_1}\right|_{\hat{a}_2=0}, \qquad S_{22} = \left. \frac{\hat{b}_2}{\hat{a}_2}\right|_{\hat{a}_1=0}
 \label{eq:3}
 $$
 
-In reality, it is not possible to assume that the incident wave of the opposite port is zero. Even if you turn off the source at the other port, the energy that exited the device under test (DUT) can reflect back and enter the DUT. Therefore, from the perspective of the DUT, the energy that enters the non-driving port due to reflection is an incident wave for the DUT. Hence, the idea that you can set, for example, $\hat{a}\_2 = 0$ for computing $S_{11}$ is not feasible in practice. See the illustration below.
+In reality, it is not possible to set the incident wave of the opposite port to zero. Even if you turn off the source at the other port, energy exiting the DUT can reflect back and re-enter it. From the DUT's perspective, this reflected energy is an incident wave. Therefore, the assumption $\hat{a}\_2 = 0$ for computing $S_{11}$, for example, does not hold in practice. See the illustration below.
 
 ![Illustration of exciting wave at port-1 of a two-port DUT.](illustration_DUT_waves.png)
 _Fig. 1. Illustration of exciting wave at port-1 for a two-port DUT._
 
-Understanding S-parameters in this manner can be misleading, as these definitions are not practical in reality. For example, even hobbyist VNAs, like the NanoVNA, show a diagram on the backplate with a definition of S-parameters that assumes the incident wave of the second port is zero. Of course, it is best to design things to be as well-matched as possible, but there will come a point (i.e., frequency) where achieving perfect matching is simply not possible.
+Teaching S-parameters this way can be misleading, as these conditions are not achievable in practice. Even hobbyist VNAs like the NanoVNA display a backplate diagram that assumes the incident wave at the second port is zero. Of course, good impedance matching is always desirable, but perfect matching is simply not achievable at all frequencies.
 
 ![NanoVNA backplate diagram of measurement concept.](nanovna_backside.jpg)
 _Fig. 2. NanoVNA backplate diagram of measurement concept._
 
-The reflection you see at the non-driving port is what we refer to as the switch term. The name can be misleading, as we have not yet discussed switches. However, there is a reason why we call this phenomenon switch term. The key point for you to understand is that the incident wave of the non-driving port is directly related to the switch term.
+The reflection at the non-driving port is what we call the switch term. The name may seem puzzling, as we haven't talked about switches yet, but the key point is that the incident wave at the non-driving port is directly related to the switch term.
 
-The name "switch term" comes from how VNAs are commonly made. In many VNAs, an electronic switch flips between the ports to drive each port. When one port is in driving mode, the other ports are terminated. Usually, the termination is part of the switch itself. Therefore, because the reflection is the result of a mismatch in termination of the non-driving ports, name "switch term" was coined for this reflection. You can read more about the origin of this name from [2].
+The name "switch term" comes from how VNAs are typically built. Many VNAs use an electronic switch to flip between ports, driving one port at a time while the others are terminated, usually by the switch itself. Because the reflection arises from a mismatch in that termination, the term "switch term" was coined. You can read more about the origin of this name in [2].
 
 The illustration below shows the two most common VNA architecture designs. On the left is the three-sampler approach, where a common receiver is used to sample the incident wave of the source and two receivers for reflections. The three-sampler design is often used in low-cost VNAs and in older designs. However, most new VNAs use a four-sampler design, where every port gets two receivers. With a four-sampler VNA, we can sample the incident wave of the source and termination (i.e., switch term). Keep in mind that for an N-port VNA, there are N switch terms.
 
@@ -63,7 +63,7 @@ _Three-sampler VNA architecture (port 1 driving)_ | _Four-sampler VNA architectu
 
 ## Direct Measurement
 
-In the following discussion, I will explain how S-parameters are defined and how switch terms arise. I will focus on two-port VNAs, but will provide the equation for N-port VNAs at the end.
+This section explains how S-parameters are formally defined and where switch terms arise. The focus is on two-port VNAs, with the N-port generalization given at the end.
 
 In a two-port VNA, waves are sampled twice: once in the forward direction, driven by port-1, and once in the reverse direction, driven by port-2. Therefore, we have two sets of equations:
 
@@ -104,7 +104,7 @@ $$
 
 The above expression presents the correct way to calculate S-parameters. If you are using a four-sampler VNA, you can measure all eight waves. Therefore, you can simply take the inverse of the matrix containing the incident waves to obtain the S-parameters. The definition presented here already accounts for switch terms and can be extended to any number of ports.
 
-Let's go back to the topic of switch terms. They are still relevant, mainly because most VNA vendors offer four receivers in their two-port VNAs, but will still only use three of them and intentionally not sample the incident wave of the non-driving port. Why? I don't know, maybe to maintain backward compatibility with old VNAs that actually only have three receivers. The most reasonable argument is to save buffer memory since fewer receivers mean less memory to use. This is not to say that the VNA will never use the fourth receiver, but it will only use it once to measure the switch terms, which are deterministic and part of the calibration procedure.
+Returning to switch terms: they remain relevant because most two-port VNAs ship with four receivers but intentionally use only three, never sampling the incident wave of the non-driving port. The most likely reason is backward compatibility with older three-receiver designs, or simply to reduce buffer memory usage. The fourth receiver is still used, but only once, to measure the switch terms themselves during calibration, since they are deterministic and can be reused.
 
 In a three-sampler VNA, the waves $\hat{a}\_{12}$ and $\hat{a}\_{21}$ are not measured due to a lack of dedicated receivers. In a four-sampler VNA, they are intentionally not measured. To address this, the matrix of measured incident waves in the above equation can be split into two matrices, as shown below:
 
@@ -260,7 +260,7 @@ where $\bs{E}\_\mathrm{L}$ and $\bs{E}\_\mathrm{R}$ are the left and right error
 ![Error box model of a two-port VNA.](generic_error_box_model.png)
 _Fig. 4. Error box model of a two-port VNA._
 
-As the next step, the wave parameter matrices in the above equation are split into two parts: a diagonal part and a non-diagonal part.
+Next, the wave parameter matrices are split into a diagonal part and a non-diagonal part.
 
 $$
 \begin{bmatrix}
@@ -279,7 +279,7 @@ $$
 \label{eq:16}
 $$
 
-The above expression can be further simplified by multiplying the inverse of the diagonal matrix at the right-hand side. This reduces all wave parameters into ratios, as given below:
+This simplifies further by multiplying through the inverse of the diagonal matrix on the right-hand side, reducing all wave parameters to ratios:
 
 $$
 \begin{bmatrix}
@@ -311,7 +311,7 @@ $$
 \label{eq:18}
 $$
 
-Our goal is to extract $\Gamma_{21}$ and $\Gamma_{12}$ without prior knowledge of the error boxes or the DUT. We can do this by assuming that the DUT is a reciprocal device, which has the property of $\mathrm{det}\left(\bs{T}\_\mathrm{D}\right)=1$. By applying the determinate operator to \eqref{eq:18} and using the determinate property $\mathrm{det}\left(\bs{A}\bs{B}\right)=\mathrm{det}\left(\bs{A}\right)\mathrm{det}\left(\bs{B}\right)$, we arrive at the following expression:
+Our goal is to extract $\Gamma_{21}$ and $\Gamma_{12}$ without prior knowledge of the error boxes or the DUT. We do this by assuming the DUT is a reciprocal device, which satisfies $\mathrm{det}\left(\bs{T}\_\mathrm{D}\right)=1$. Applying the determinant to \eqref{eq:18} and using the property $\mathrm{det}\left(\bs{A}\bs{B}\right)=\mathrm{det}\left(\bs{A}\right)\mathrm{det}\left(\bs{B}\right)$, we arrive at:
 
 $$
 (1-\overbar{S}_{11}\Gamma_{12})\frac{\overbar{S}_{12}}{\overbar{S}_{21}} = \underbrace{\mathrm{det}\left(\bs{E}_\mathrm{L}\right)\mathrm{det}\left(\bs{E}_\mathrm{R}\right)}_{c}(\Gamma_{21}\overbar{S}_{22}-1)
@@ -325,7 +325,7 @@ $$
 \label{eq:20}
 $$
 
-From above equation we can see that we have a linear equation in three unknowns: $\Gamma_{12}$, $c\Gamma_{21}$, and $c$. Therefore, if we measure at least three unique transmissive reciprocal devices, we can solve for these unknowns by solving the following linear system of equations:
+From the above equation we can see that we have a linear equation in three unknowns: $\Gamma_{12}$, $c\Gamma_{21}$, and $c$. Therefore, measuring at least three unique transmissive reciprocal devices lets us solve by forming the following linear system:
 
 $$
 \begin{bmatrix}
