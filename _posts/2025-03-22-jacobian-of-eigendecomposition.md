@@ -4,7 +4,7 @@ date: 2025-03-22 12:00:00 +0100
 categories: [Tutorial]
 tags: [linear-algebra, decomposition, derivative]     # TAG names should always be lowercase
 math: true
-img_path: ../../../assets/img/posts_img/
+media_subpath: /assets/img/posts_img
 image: # ...
 ---
 
@@ -396,7 +396,7 @@ if __name__ == '__main__':
 
 ## References
 
-[1] Magnus, Jan R. "On Differentiating Eigenvalues and Eigenvectors." Econometric Theory, vol. 1, no. 2, 1985, pp. 179–91. JSTOR, <http://www.jstor.org/stable/3532409>.
+[1] Magnus, Jan R. "On Differentiating Eigenvalues and Eigenvectors." Econometric Theory, vol. 1, no. 2, 1985, pp. 179–91. JSTOR, <https://www.jstor.org/stable/3532409>.
 
 [2] J. H. Wilkinson, The Algebraic Eigenvalue Problem. Oxford: Clarendon Press, 1988. ISBN: 9780198534181.
 

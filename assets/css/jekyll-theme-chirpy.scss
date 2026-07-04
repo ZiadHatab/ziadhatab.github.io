@@ -1,0 +1,27 @@
+---
+---
+
+@use 'abstracts/variables' with (
+  $theme: '{{ site.theme_mode }}'
+);
+
+/* prettier-ignore */
+@use 'main
+{%- if jekyll.environment == 'production' -%}
+  .bundle
+{%- endif -%}
+';
+
+/* append your custom style below */
+
+/*
+  Keep the site tagline on two lines, as it was before the Chirpy 7 upgrade.
+  Chirpy 7 widened the profile padding (padding-left 2.5rem + padding-right
+  1.25rem), which shrank the subtitle from ~212px to ~200px and pushed the
+  tagline onto a third line. Reclaim that width on the right and restore the
+  pre-7 line spacing.
+*/
+#sidebar .site-subtitle {
+  margin-right: -1rem;
+  line-height: 1.25rem;
+}

@@ -1,10 +1,10 @@
 ---
 title: Trilateration and Multilateration
-date: 2025-03-22 12:00:00 +0100
+date: 2026-03-22 12:00:00 +0100
 categories: [Tutorial]
 tags: [wireless-communication, positioning, dsp]     # TAG names should always be lowercase
 math: true
-img_path: ../../../assets/img/posts_img/
+media_subpath: /assets/img/posts_img
 image: # tria_post/intersect_spheres_v2.png
 ---
 
