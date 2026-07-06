@@ -1,8 +1,8 @@
 ---
 title: Multiline TRL Calibration
 date: 2023-07-01 12:00:00 +0100
-categories: [Tutorial]
-tags: [vna, calibration, s-parameters, TRL]     # TAG names should always be lowercase
+categories: [Tutorial, VNA]
+tags: [vna, calibration, s-parameters, trl]     # TAG names should always be lowercase
 math: true
 media_subpath: /assets/img/posts_img
 image: # TRL_waveguide_GCPW_kit.png

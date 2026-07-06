@@ -1,8 +1,8 @@
 ---
 title: VNA Switch Terms
 date: 2023-06-26 12:00:00 +0100
-categories: [Tutorial]
-tags: [vna, calibration, three-receivers]     # TAG names should always be lowercase
+categories: [Tutorial, VNA]
+tags: [vna, calibration, s-parameters, three-receivers]     # TAG names should always be lowercase
 math: true
 media_subpath: /assets/img/posts_img
 image: # TRL_waveguide_GCPW_kit.png

@@ -1,7 +1,7 @@
 ---
 title: Jacobian of Eigendecomposition
 date: 2025-03-22 12:00:00 +0100
-categories: [Tutorial]
+categories: [Tutorial, Mathematics]
 tags: [linear-algebra, decomposition, derivative]     # TAG names should always be lowercase
 math: true
 media_subpath: /assets/img/posts_img

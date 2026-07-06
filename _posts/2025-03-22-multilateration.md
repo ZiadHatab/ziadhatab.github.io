@@ -1,7 +1,7 @@
 ---
 title: Trilateration and Multilateration
 date: 2026-03-22 12:00:00 +0100
-categories: [Tutorial]
+categories: [Tutorial, Wireless]
 tags: [wireless-communication, positioning, dsp]     # TAG names should always be lowercase
 math: true
 media_subpath: /assets/img/posts_img

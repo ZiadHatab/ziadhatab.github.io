@@ -1,7 +1,7 @@
 ---
 title: Two-port/One-path Calibration
 date: 2024-06-29 12:00:00 +0100
-categories: [Tutorial]
+categories: [Tutorial, VNA]
 tags: [vna, calibration, s-parameters, solt, three-receivers]     # TAG names should always be lowercase
 math: true
 media_subpath: /assets/img/posts_img

@@ -1,7 +1,7 @@
 ---
 title: 'Digital MIMO: From SISO to Beamforming'
 date: 2026-07-03 12:00:00 +0200
-categories: [Tutorial]
+categories: [Tutorial, Wireless]
 tags: [wireless-communication, dsp]     # TAG names should always be lowercase
 math: true
 media_subpath: /assets/img/posts_img

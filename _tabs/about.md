@@ -7,4 +7,4 @@ order: 5
 <!-- > Add Markdown syntax content to file `_tabs/about.md`{: .filepath } and it will show up on this page.
 {: .prompt-tip } -->
 
-Hi there! I'm Ziad (pronounced Zee-ad), and I work in RF electronics and signal processing. My research focuses on millimeter-wave measurements (mmWave metrology). This website aims to make RF technology more accessible and understandable. I hope you find the information here useful. Enjoy reading!
+Hey, I'm Ziad (pronounced Zee-ad). I work in RF and microwave engineering, mostly on vector network analyzer measurement and calibration techniques, and I also do a fair bit of signal processing, statistics, and Python. This site is where I write about the topics I find interesting and try to explain them as clearly as I can. Enjoy!
